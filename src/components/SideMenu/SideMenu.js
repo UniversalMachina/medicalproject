@@ -37,7 +37,7 @@ const SideMenu = () => {
               key={item.name}
               className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${
                 currentPath === item.path || (currentPath === '/' && index === 0)
-                  ? `bg-color-primary-100 text-color-white-100 ${isCollapsed ? 'w-[30px]' : 'w-full'}`
+                  ? `bg-color-primary-100 text-color-white-100 ${isCollapsed ? 'w-[25px]' : 'w-full'}`
                   : ''
               }`}
             >
