@@ -216,15 +216,6 @@
     "statusBgColor": "bg-mintcream"
   },
   {
-    "id": "#21987",
-    "name": "Sophia Martin",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyzz",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
     "id": "#23145",
     "name": "Lucas Thomas",
     "contactInfo": "+1 (555) 234-5678",
@@ -245,109 +236,12 @@
   {
     "id": "#74912",
     "name": "Benjamin Green",
-    "contactInfo": "+1 (555) 234-5678",
+    "contactInfo":
+
+ "+1 (555) 234-5678",
     "clinician": "xyy",
     "status": "On wait list",
     "statusColor": "text-chocolate",
     "statusBgColor": "bg-linen"
-  },
-  {
-    "id": "#54231",
-    "name": "Mason Brown",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyy",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#78912",
-    "name": "Ethan Lee",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyy",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#56321",
-    "name": "Ava Harris",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyy",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#98413",
-    "name": "Emily Walker",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyzz",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#65298",
-    "name": "Olivia Hall",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyzz",
-    "status": "Process",
-    "statusColor": "text-chocolate",
-    "statusBgColor": "bg-linen"
-  },
-  {
-    "id": "#40129",
-    "name": "Alexander Young",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyzz",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#73215",
-    "name": "James White",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyzz",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#34971",
-    "name": "Charlotte King",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyzz",
-    "status": "On wait list",
-    "statusColor": "text-chocolate",
-    "statusBgColor": "bg-linen"
-  },
-  {
-    "id": "#82134",
-    "name": "Henry Moore",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyy",
-    "status": "On wait list",
-    "statusColor": "text-chocolate",
-    "statusBgColor": "bg-linen"
-  },
-  {
-    "id": "#57213",
-    "name": "Amelia Taylor",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyy",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
-  },
-  {
-    "id": "#42897",
-    "name": "Michael Anderson",
-    "contactInfo": "+1 (555) 234-5678",
-    "clinician": "xyy",
-    "status": "Evaluated",
-    "statusColor": "text-seagreen",
-    "statusBgColor": "bg-mintcream"
   }
 ]
