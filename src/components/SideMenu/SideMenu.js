@@ -22,12 +22,12 @@ const SideMenu = () => {
   ];
 
   return (
-    <div className={`fixed top-0 left-0 ${isCollapsed ? 'w-[80px]' : 'w-[289px]'} h-screen bg-color-white-100 overflow-hidden text-xs text-color-black-100 font-plus-jakarta-sans flex flex-col justify-between transition-all duration-300`}>
+    <div className={`fixed top-0 left-0 ${isCollapsed ? 'w-[120px]' : 'w-[289px]'} h-screen bg-color-white-100 overflow-hidden text-xs text-color-black-100 font-plus-jakarta-sans flex flex-col justify-between transition-all duration-300`}>
       <div>
         <div className="flex justify-between items-center pl-[30px] pt-[30px]">
           <div className="text-sm leading-[21px] font-semibold">MENU</div>
-          <button onClick={toggleSidebar} className="pr-[10px]">
-            <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronLeft} />
+          <button onClick={toggleSidebar} className="pr-[10px] bg-transparent border-none focus:outline-none">
+            <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronLeft} className="text-color-primary-100" />
           </button>
         </div>
         <div className="p-[30px]">
@@ -37,7 +37,7 @@ const SideMenu = () => {
               key={item.name}
               className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${
                 currentPath === item.path || (currentPath === '/' && index === 0)
-                  ? `bg-color-primary-100 text-color-white-100 ${isCollapsed ? 'w-[80px]' : 'w-full'}`
+                  ? `bg-color-primary-100 text-color-white-100 ${isCollapsed ? 'w-[30px]' : 'w-full'}`
                   : ''
               }`}
             >
