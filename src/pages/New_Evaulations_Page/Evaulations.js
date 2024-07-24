@@ -6,7 +6,7 @@ import EvaluationContainer from "./EvaluationContainer";
 import FloatingButtons from "./FloatingButtons";
 import Header from "./Header";
 
-const Evaulations = () => {
+const New_Evaulations = () => {
   const { theme } = useTheme(); // Get the current theme
 
   // Define the state for the list of people
@@ -22,10 +22,9 @@ const Evaulations = () => {
       <SideMenu />
       <Header />
       <FloatingButtons />
-      {/* Pass the people state to EvaluationContainer */}
       <EvaluationContainer people={people} />
     </div>
   );
 };
 
-export default Evaulations;
+export default New_Evaulations;

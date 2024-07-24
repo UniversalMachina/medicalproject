@@ -15,7 +15,7 @@ const TopBar = () => {
         </div>
         <div className="flex items-center gap-12 text-white pr-[80px]">
           <ThemeToggle />
-          <AddEvaluationsButton />
+          {/* <AddEvaluationsButton /> */}
           <NotificationIcon />
           <UserProfile />
         </div>

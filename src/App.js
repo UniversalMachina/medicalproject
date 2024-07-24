@@ -5,6 +5,7 @@ import Evaulations from "./pages/Evaulations_Page/Evaulations";
 import Interviews from "./pages/Interviews";
 import Clients from "./pages/Client_Page/Clients";
 import PatientsInterviewPage from "./pages/PatientsInterviewPage";
+import New_Evaulations from "./pages/New_Evaulations_Page/Evaulations";
 
 function App() {
   const action = useNavigationType();
@@ -58,6 +59,8 @@ function App() {
        
         <Routes>
           <Route path="/" element={<Evaulations />} />
+          <Route path="/new-evaulations" element={<New_Evaulations />} />
+
           <Route path="/interviews" element={<Interviews />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/patients-interview-page" element={<PatientsInterviewPage />} />

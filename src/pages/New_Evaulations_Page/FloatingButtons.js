@@ -16,9 +16,7 @@ const FloatingButtons = () => {
           Year
         </div>
       </div>
-      <div className="absolute top-[168px] left-[1390px] flex items-center p-3 bg-color-primary-100 rounded-6xs-5 cursor-pointer">
-        <b className="px-10 text-color-white-100">+ Add Evaluations</b>
-      </div>
+
     </>
   );
 };
