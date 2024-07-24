@@ -1,18 +1,21 @@
-import React from 'react';
-import TopBar from '../../components/TopBar/TopBar';
-import SideMenu from '../../components/SideMenu/SideMenu';
-import EvaluationContainer from './EvaluationContainer';
-import FloatingButtons from './FloatingButtons';
-import Header from './Header';
+import React from "react";
+import { useTheme } from "../../themeContext"; // Import the custom hook
+import TopBar from "../../components/TopBar/TopBar";
+import SideMenu from "../../components/SideMenu/SideMenu";
+import EvaluationContainer from "./EvaluationContainer";
+// import FloatingButtons from "./FloatingButtons";
+// import Header from "./Header";
 
 const Evaulations = () => {
+  const { theme } = useTheme(); // Get the current theme
+
   return (
-    <div className="w-full h-[1080px] relative bg-white overflow-hidden text-left text-sm text-gray2 font-poppins">
+    <div className={`w-full h-[1080px] relative overflow-hidden text-left text-sm font-poppins ${theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"}`}>
       <TopBar />
-       <SideMenu />
+      <SideMenu />
       <EvaluationContainer />
-    {/*  <FloatingButtons />
-      <Header /> */}
+      {/* <FloatingButtons /> */}
+      {/* <Header /> */}
     </div>
   );
 };

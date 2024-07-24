@@ -1,10 +1,6 @@
-import { useEffect } from "react";
-import {
-  Routes,
-  Route,
-  useNavigationType,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigationType, useLocation } from "react-router-dom";
+import { ThemeProvider } from "./themeContext"; // Import the ThemeProvider
 import Evaulations from "./pages/Evaulations_Page/Evaulations";
 import Interviews from "./pages/Interviews";
 import Clients from "./pages/Client_Page/Clients";
@@ -49,9 +45,7 @@ function App() {
     }
 
     if (metaDescription) {
-      const metaDescriptionTag = document.querySelector(
-        'head > meta[name="description"]'
-      );
+      const metaDescriptionTag = document.querySelector('head > meta[name="description"]');
       if (metaDescriptionTag) {
         metaDescriptionTag.content = metaDescription;
       }
@@ -59,15 +53,18 @@ function App() {
   }, [pathname]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Evaulations />} />
-      <Route path="/interviews" element={<Interviews />} />
-      <Route path="/clients" element={<Clients />} />
-      <Route
-        path="/patients-interview-page"
-        element={<PatientsInterviewPage />}
-      />
-    </Routes>
+    <ThemeProvider>
+      <div>
+       
+        <Routes>
+          <Route path="/" element={<Evaulations />} />
+          <Route path="/interviews" element={<Interviews />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/patients-interview-page" element={<PatientsInterviewPage />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
+
 export default App;
