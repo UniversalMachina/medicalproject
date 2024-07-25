@@ -5,7 +5,7 @@ import Evaulations from "./pages/Evaulations_Page/Evaulations";
 import Interviews from "./pages/Interviews";
 import Clients from "./pages/Client_Page/Clients";
 import PatientsInterviewPage from "./pages/PatientsInterviewPage";
-import New_Evaulations from "./pages/New_Evaulations_Page/Evaulations";
+import New_Evaulations from "./pages/New_Evaulations_Page/New_Evaulations";
 
 function App() {
   const action = useNavigationType();
