@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import ContactInfoPopup from './ContactInfoPopup';
 
 const EvaluationContainer = ({ people }) => {
   const evaluationSections = [
@@ -58,6 +59,10 @@ const EvaluationContainer = ({ people }) => {
       ...prevInfo,
       [currentSection]: tempContactInfo,
     }));
+    setShowPopup(false);
+  };
+
+  const handleCancel = () => {
     setShowPopup(false);
   };
 
@@ -130,35 +135,14 @@ const EvaluationContainer = ({ people }) => {
       </button>
 
       {/* Popup for contact info */}
-      {showPopup && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-8">
-            <h2 className="text-xl font-semibold mb-4">Enter Contact Info for {currentSection}</h2>
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              className="w-full mb-4 p-2 border border-gray-300 rounded"
-              onChange={handleInputChange}
-              value={tempContactInfo.firstName || ''}
-            />
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              className="w-full mb-4 p-2 border border-gray-300 rounded"
-              onChange={handleInputChange}
-              value={tempContactInfo.lastName || ''}
-            />
-            <button
-              className="px-4 py-2 bg-blue-500 text-white rounded"
-              onClick={handleSave}
-            >
-              Save
-            </button>
-          </div>
-        </div>
-      )}
+      <ContactInfoPopup
+        showPopup={showPopup}
+        currentSection={currentSection}
+        tempContactInfo={tempContactInfo}
+        handleInputChange={handleInputChange}
+        handleSave={handleSave}
+        handleCancel={handleCancel}
+      />
     </div>
   );
 };
