@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 const EvaluationContainer = ({ people }) => {
   const evaluationSections = [
@@ -109,14 +110,10 @@ const EvaluationContainer = ({ people }) => {
                 {contactInfo[section].firstName} {contactInfo[section].lastName}
               </span>
               <button
-                className="text-red-500"
+                className="bg-white p-2 rounded-full"
                 onClick={(e) => handleDelete(section, e)}
               >
-                <img
-                  className="h-[28.7px] w-[28.7px] relative overflow-hidden shrink-0"
-                  alt="Delete"
-                  src="/trashcan.svg"
-                />
+                <FaTrash className="text-red-500" />
               </button>
             </div>
           )}
