@@ -10,7 +10,7 @@ const UserProfile = () => {
           <div className="text-color-black-50">johndoe@gmail.com</div>
         </div>
       </div>
-      <img className="h-6 w-6" alt="More Icon" src="/iconmore.svg" />
+      {/* <img className="h-6 w-6" alt="More Icon" src="/iconmore.svg" /> */}
     </div>
   );
 };
