@@ -84,15 +84,15 @@ const EvaluationContainer = ({ people }) => {
   };
 
   return (
-    <div className="absolute top-[344px] left-[351px] w-[1278px] h-auto flex flex-col items-start justify-start gap-[38px]">
+    <div className="absolute top-[304px] left-[351px] w-[1278px] h-auto flex flex-col items-start justify-start gap-[38px]">
       {/* Evaluation Name section */}
-      <div className="w-[1278px] h-auto rounded-[20.23px] bg-white overflow-hidden shrink-0 flex flex-col items-start justify-start pt-[21.9px] pb-[17.3px] pr-[28.3px] pl-8 box-border gap-4 text-left text-black font-poppins">
-        <div className="h-[25.3px] w-full relative font-semibold inline-block shrink-0">
+      <div className="w-[1258px] h-auto bg-white flex flex-col  text-black font-poppins">
+        <div className="h-[25.3px] w-full relative font-semibold text-[30px]">
           Evaluation Name*
         </div>
         <input
           type="text"
-          className="w-full h-[28.7px] mt-2 rounded-[10.12px] border border-black pl-2"
+          className="w-full h-[48.7px] mt-[40px] rounded-[10.12px] border border-black pl-[30px]"
           placeholder="Enter Evaluation Name"
           value={evaluationName}
           onChange={(e) => setEvaluationName(e.target.value)}

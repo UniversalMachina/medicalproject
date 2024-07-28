@@ -3,7 +3,6 @@ import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import EvaluationContainer from "./EvaluationContainer";
-import FloatingButtons from "./FloatingButtons";
 import Header from "./Header";
 
 const New_Evaulations = () => {
@@ -21,7 +20,7 @@ const New_Evaulations = () => {
       <TopBar />
       <SideMenu />
       <Header />
-      <FloatingButtons />
+
       <EvaluationContainer people={people} />
     </div>
   );

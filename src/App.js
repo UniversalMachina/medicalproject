@@ -59,7 +59,7 @@ function App() {
        
         <Routes>
           <Route path="/" element={<Evaulations />} />
-          <Route path="/new-evaulations" element={<New_Evaulations />} />
+          <Route path="/new-evaluations" element={<New_Evaulations />} />
 
           <Route path="/interviews" element={<Interviews />} />
           <Route path="/clients" element={<Clients />} />

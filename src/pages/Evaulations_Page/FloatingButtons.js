@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FloatingButtons = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="absolute top-[169.5px] left-[1651.5px] rounded-6xl box-border w-[38px] h-[38px] flex flex-row items-center justify-center p-2.5 border-[1px] border-solid border-black">
@@ -16,7 +19,10 @@ const FloatingButtons = () => {
           Year
         </div>
       </div>
-      <div className="absolute top-[168px] left-[1390px] flex items-center p-3 bg-color-primary-100 rounded-6xs-5 cursor-pointer">
+      <div
+        className="absolute top-[168px] left-[1390px] flex items-center p-3 bg-color-primary-100 rounded-6xs-5 cursor-pointer"
+        onClick={() => navigate('/new-evaluations')}
+      >
         <b className="px-10 text-color-white-100">+ Add Evaluations</b>
       </div>
     </>
