@@ -16,14 +16,29 @@ const Evaulations = () => {
     { name: "Thayla Ovalle PCE", date: "Apr, 12 2024" }
   ]);
 
+  // Define the filter state
+  const [filter, setFilter] = useState("all");
+
+  // Filter the people based on the filter state
+  const filteredPeople = people.filter(person => {
+    const date = new Date(person.date);
+    const today = new Date();
+    if (filter === "day") {
+      return date.toDateString() === today.toDateString();
+    } else if (filter === "year") {
+      return date.getFullYear() === today.getFullYear();
+    }
+    return true;
+  });
+
   return (
     <div className={`w-full h-[1080px] relative overflow-hidden text-left text-sm font-poppins ${theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"}`}>
       <TopBar />
       <SideMenu />
       <Header />
-      <FloatingButtons />
-      {/* Pass the people state to EvaluationContainer */}
-      <EvaluationContainer people={people} />
+      <FloatingButtons filter={filter} setFilter={setFilter} />
+      {/* Pass the filtered people state to EvaluationContainer */}
+      <EvaluationContainer people={filteredPeople} />
     </div>
   );
 };
