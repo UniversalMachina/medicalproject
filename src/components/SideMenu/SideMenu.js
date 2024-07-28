@@ -51,7 +51,7 @@ const SideMenu = () => {
                 currentPath === item.path ||
                 (currentPath === "/" && index === 0)
                   ? `bg-color-primary-100 text-color-white-100 ${
-                      isCollapsed ? "w-[25px]" : "w-full"
+                      isCollapsed ? "w-[25px]" : "w-[85%]"
                     }`
                   : ""
               }`}
