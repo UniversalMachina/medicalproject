@@ -1,10 +1,18 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Evaulations1 = ({ className = "", name, date }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/evaluation/${encodeURIComponent(name)}/${encodeURIComponent(date)}`);
+  };
+
   return (
     <div
       className={`w-[1278px] h-[68px] rounded-[20.23px] bg-thistle overflow-hidden shrink-0 flex flex-row items-start justify-start pt-[21.9px] pb-[17.3px] pr-[28.3px] pl-8 box-border gap-[856px] text-left text-base-9 text-white font-poppins ${className}`}
+      onClick={handleClick}
     >
       <div className="h-[25.3px] w-[199px] relative font-semibold inline-block shrink-0">
         {name}
