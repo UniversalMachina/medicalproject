@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import ContactInfoPopup from './ContactInfoPopup';
+import { useNavigate } from 'react-router-dom';
 
 const EvaluationContainer = ({ people }) => {
+  const navigate = useNavigate();
+
   const evaluationSections = [
     "Evaluated Parent",
     "Child",
@@ -77,6 +80,8 @@ const EvaluationContainer = ({ people }) => {
         }
       });
       alert(alertMessage);
+      navigate('/');
+
       // Here you can add logic to submit the data
     } else {
       alert('Please fill all sections and provide an evaluation name.');

@@ -6,14 +6,14 @@ const ContactInfoPopup = ({ showPopup, currentSection, tempContactInfo, handleIn
   const isSaveDisabled = !tempContactInfo.firstName || !tempContactInfo.lastName;
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 0, 0, 0.35)' }}>
       <div className="bg-white rounded-lg p-8">
         <h2 className="text-xl font-semibold mb-4">Enter Contact Info for {currentSection}</h2>
         <input
           type="text"
           name="firstName"
           placeholder="First Name"
-          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          className="w-[95%] mb-4 p-2 border border-gray-300 rounded"
           onChange={handleInputChange}
           value={tempContactInfo.firstName || ''}
         />
@@ -21,7 +21,7 @@ const ContactInfoPopup = ({ showPopup, currentSection, tempContactInfo, handleIn
           type="text"
           name="lastName"
           placeholder="Last Name"
-          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          className="w-[95%] mb-4 p-2 border border-gray-300 rounded"
           onChange={handleInputChange}
           value={tempContactInfo.lastName || ''}
         />
