@@ -12,7 +12,7 @@ const FloatingButtons = ({ filter, setFilter }) => {
         <img className="h-[18px] w-[18px] relative overflow-hidden shrink-0" alt="" src="/frame.svg" />
       </div>
       <div 
-        className={`absolute top-[168px] left-[1704.5px] rounded-3xs w-16 h-[41px] flex flex-row items-start justify-start p-2.5 box-border cursor-pointer ${isActive("day") ? "bg-darkpurple" : "bg-purple"}`} 
+        className={`absolute top-[168px] left-[1704.5px] rounded-3xs w-16 h-[41px] flex flex-row items-start justify-start p-2.5 box-border cursor-pointer ${isActive("day") ? "bg-red-200" : "bg-purple"}`} 
         onClick={() => setFilter(isActive("day") ? "all" : "day")}
       >
         <div className="h-[21px] w-11 relative font-medium inline-block">
@@ -20,7 +20,7 @@ const FloatingButtons = ({ filter, setFilter }) => {
         </div>
       </div>
       <div 
-        className={`absolute top-[168px] left-[1783.5px] rounded-3xs w-[52px] h-[41px] flex flex-row items-start justify-start p-2.5 box-border cursor-pointer ${isActive("year") ? "bg-darkpurple" : "bg-purple"}`} 
+        className={`absolute top-[168px] left-[1783.5px] rounded-3xs w-[52px] h-[41px] flex flex-row items-start justify-start p-2.5 box-border cursor-pointer ${isActive("year") ? "bg-red-200" : "bg-purple"}`} 
         onClick={() => setFilter(isActive("year") ? "all" : "year")}
       >
         <div className="h-[21px] w-8 relative font-medium inline-block">
