@@ -9,11 +9,11 @@ import Header from "./Header";
 const Evaulations = () => {
   const { theme } = useTheme(); // Get the current theme
 
-  // Define the state for the list of people
+  // Define the state for the list of people with dates
   const [people, setPeople] = useState([
-    "Eric Dekryger",
-    "Kanishk Jagwani",
-    "Thayla Ovalle PCE"
+    { name: "Eric Dekryger", date: "Apr, 10 2024" },
+    { name: "Kanishk Jagwani", date: "Apr, 11 2024" },
+    { name: "Thayla Ovalle PCE", date: "Apr, 12 2024" }
   ]);
 
   return (
