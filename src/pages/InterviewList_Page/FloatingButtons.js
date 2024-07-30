@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const FloatingButtons = ({ filter, setFilter, setSort, name, date }) => {
+const FloatingButtons = ({ filter, setFilter, setSort, id }) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -56,7 +56,7 @@ const FloatingButtons = ({ filter, setFilter, setSort, name, date }) => {
       </div>
       <div
         className="absolute top-[168px] left-[1390px] flex items-center p-3 bg-color-primary-100 rounded-6xs-5 cursor-pointer"
-        onClick={() => navigate(`/addinterview/${encodeURIComponent(name)}/${encodeURIComponent(date)}`)}
+        onClick={() => navigate(`/addinterview/${encodeURIComponent(id)}`)}
       >
         <b className="px-10 text-color-white-100">+ Add Interviews</b>
       </div>

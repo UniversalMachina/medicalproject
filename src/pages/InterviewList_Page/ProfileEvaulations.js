@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const ProfileEvaulations = () => {
   const { theme } = useTheme(); // Get the current theme
-  const { name, date } = useParams(); // Get the URL parameters
+  const { id} = useParams(); 
 
   // Define the state for the list of people with dates
   const [people, setPeople] = useState([
@@ -49,7 +49,7 @@ const ProfileEvaulations = () => {
       <TopBar />
       <SideMenu />
       <Header />
-      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} name={name} date={date}/>
+      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} id={id}/>
       {/* Pass the filtered and sorted people state to EvaluationContainer */}
       <InterviewContainer people={filteredPeople} />
       {/* <p>No evaluation found for {name} on {date}</p> */}

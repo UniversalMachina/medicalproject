@@ -62,9 +62,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Evaulations />} />
           <Route path="/new-evaluations" element={<New_Evaulations />} />
-          <Route path="/evaluation/:name/:date" element={<ProfileEvaulations />} />
-          <Route path="/addinterview/:name/:date" element={<AddInterview />} />
-          <Route path="/interview/:name/:date" element={<Interview_info_page />} />
+          <Route path="/evaluation/:id" element={<ProfileEvaulations />} />
+          <Route path="/addinterview/:id" element={<AddInterview />} />
+          <Route path="/interview/:id/:interviewid" element={<Interview_info_page />} />
 
 
           <Route path="/clients" element={<Clients />} />

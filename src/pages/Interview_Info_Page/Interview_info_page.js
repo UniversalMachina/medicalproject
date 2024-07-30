@@ -10,7 +10,7 @@ import Evaulations3 from "./Evaulations3";
 
 const Interview_info_page = () => {
   const { theme } = useTheme(); // Get the current theme
-  const { name, date } = useParams(); // Get the URL parameters
+  const { id, interviewid } = useParams(); // Get the URL parameters
 
   return (
     <div
