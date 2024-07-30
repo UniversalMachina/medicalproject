@@ -75,6 +75,16 @@ const NewEvaluationInputs = () => {
       const newPerson = {
         name: evaluationName,
         date: new Date().toLocaleDateString(),
+        evaluated_parent_first_name: contactInfo['Evaluated Parent']?.firstName,
+        evaluated_parent_last_name: contactInfo['Evaluated Parent']?.lastName,
+        child_first_name: contactInfo['Child']?.firstName,
+        child_last_name: contactInfo['Child']?.lastName,
+        child_collateral_first_name: contactInfo['Child Collateral Contact']?.firstName,
+        child_collateral_last_name: contactInfo['Child Collateral Contact']?.lastName,
+        parent_collateral_first_name: contactInfo['Parent Collateral Contact']?.firstName,
+        parent_collateral_last_name: contactInfo['Parent Collateral Contact']?.lastName,
+        other_contact_first_name: contactInfo['Other Contact']?.firstName,
+        other_contact_last_name: contactInfo['Other Contact']?.lastName
       };
 
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/people`, newPerson)
