@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Interview_item = ({ className = "", name, date }) => {
+const InterviewItem = ({ className = "", name, date }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -35,5 +35,10 @@ const Interview_item = ({ className = "", name, date }) => {
   );
 };
 
+InterviewItem.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+};
 
-export default Interview_item;
+export default InterviewItem;

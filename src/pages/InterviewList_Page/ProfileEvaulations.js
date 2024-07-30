@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
@@ -6,26 +6,31 @@ import InterviewContainer from "./InterviewContainer";
 import FloatingButtons from "./FloatingButtons";
 import Header from "./Header";
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const ProfileEvaulations = () => {
+const ProfileEvaluations = () => {
   const { theme } = useTheme(); // Get the current theme
-  const { id} = useParams(); 
+  const { id } = useParams(); 
 
-  // Define the state for the list of people with dates
-  const [people, setPeople] = useState([
-    { name: "Eric Dekryger", date: "Apr, 10 2024" },
-    { name: "Eric Dekryger", date: "Apr, 11 2024" },
-    { name: "Eric Dekryger", date: "Apr, 12 2024" }
-  ]);
+  const [interviews, setInterviews] = useState([]);
 
   // Define the filter and sort states
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("mostRecent");
 
-  // Filter and sort the people based on the filter and sort states
-  const filteredPeople = people
-    .filter(person => {
-      const date = new Date(person.date);
+  useEffect(() => {
+    if (id) {
+      // Fetch interviews for the selected person
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}`)
+        .then(response => setInterviews(response.data))
+        .catch(error => console.error('Error fetching interviews:', error));
+    }
+  }, [id]);
+
+  // Filter and sort the interviews based on the filter and sort states
+  const filteredInterviews = interviews
+    .filter(interview => {
+      const date = new Date(interview.interview_date);
       const today = new Date();
       if (filter === "day") {
         return date.toDateString() === today.toDateString();
@@ -35,8 +40,8 @@ const ProfileEvaulations = () => {
       return true;
     })
     .sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
+      const dateA = new Date(a.interview_date);
+      const dateB = new Date(b.interview_date);
       if (sort === "mostRecent") {
         return dateB - dateA;
       } else {
@@ -50,12 +55,11 @@ const ProfileEvaulations = () => {
       <SideMenu />
       <Header />
       <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} id={id}/>
-      {/* Pass the filtered and sorted people state to EvaluationContainer */}
-      <InterviewContainer people={filteredPeople} />
+      {/* Pass the filtered and sorted interviews state to InterviewContainer */}
+      <InterviewContainer people={filteredInterviews} />
       {/* <p>No evaluation found for {name} on {date}</p> */}
-
     </div>
   );
 };
 
-export default ProfileEvaulations;
+export default ProfileEvaluations;
