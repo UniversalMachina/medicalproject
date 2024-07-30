@@ -56,7 +56,7 @@ const ProfileEvaluations = () => {
       <Header />
       <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} id={id}/>
       {/* Pass the filtered and sorted interviews state to InterviewContainer */}
-      <InterviewContainer people={filteredInterviews} />
+      <InterviewContainer people={filteredInterviews} id={id} />
       {/* <p>No evaluation found for {name} on {date}</p> */}
     </div>
   );

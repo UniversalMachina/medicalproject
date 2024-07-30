@@ -1,23 +1,48 @@
-import React, { useState } from "react";
-import { useTheme } from "../../themeContext"; // Import the custom hook
+import React, { useState, useEffect } from "react";
+import { useTheme } from "../../themeContext";
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AddInterview = () => {
-  const { theme } = useTheme(); // Get the current theme
-  const { name, date } = useParams(); // Get the URL parameters
-  const navigate = useNavigate(); // Get the navigate function from react-router-dom
+  const { theme } = useTheme();
+  const { id } = useParams(); // Get the ID from the URL
+  const navigate = useNavigate();
 
-  const [audioFile, setAudioFile] = useState(null); // State to store the uploaded audio file
+  const [interviewType, setInterviewType] = useState("");
+  const [interviewDate, setInterviewDate] = useState("");
+  const [interviewerName, setInterviewerName] = useState("");
+  const [personDetails, setPersonDetails] = useState({});
 
-  const handleFileChange = (e) => {
-    setAudioFile(e.target.files[0]);
-  };
+  useEffect(() => {
+    if (id) {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/people/${id}`)
+        .then(response => {
+          setPersonDetails(response.data);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the person's details!", error);
+        });
+    }
+  }, [id]);
 
   const handleNextClick = () => {
-    // You can add any validation or processing logic here if needed
-    navigate(`/interview/${name}/${date}`);
+    const interviewData = {
+      interview_type: interviewType,
+      interview_date: interviewDate,
+      interviewer_name: interviewerName,
+      person_id: id,
+    };
+
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/interviews`, interviewData)
+      .then(response => {
+        console.log(response.data);
+        navigate(`/interview/${id}`);
+      })
+      .catch(error => {
+        console.error("There was an error uploading the interview!", error);
+      });
   };
 
   return (
@@ -28,23 +53,84 @@ const AddInterview = () => {
     >
       <TopBar />
       <SideMenu />
-
       <div className="absolute top-[144px] left-[351px] w-[1278px] h-[280px] flex flex-col items-start justify-start gap-[38px]">
-      <div className="p-4">
-        <h2 className="text-xl mb-4">Add Interview</h2>
-        
-        <div className="mb-4">
-          <label className="block mb-2">Upload Audio File</label>
-          <input type="file" accept="audio/*" onChange={handleFileChange} />
-        </div>
+        <div className="p-4">
+          <h2 className="text-xl mb-4">Add Interview</h2>
+          
+          {personDetails && (
+            <div className="mb-4">
+              <h3>Person Details</h3>
+              <p>Name: {personDetails.name}</p>
+              <p>Evaluated Parent: {personDetails.evaluated_parent_first_name} {personDetails.evaluated_parent_last_name}</p>
+              <p>Child: {personDetails.child_first_name} {personDetails.child_last_name}</p>
+              <p>Child Collateral: {personDetails.child_collateral_first_name} {personDetails.child_collateral_last_name}</p>
+              <p>Parent Collateral: {personDetails.parent_collateral_first_name} {personDetails.parent_collateral_last_name}</p>
+              <p>Other Contact: {personDetails.other_contact_first_name} {personDetails.other_contact_last_name}</p>
+            </div>
+          )}
 
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={handleNextClick}
-        >
-          Next
-        </button>
-      </div>
+          <div className="mb-4">
+            <label className="block mb-2">Type of Interview</label>
+            <select
+              value={interviewType}
+              onChange={(e) => setInterviewType(e.target.value)}
+              className="block w-full p-2 border border-gray-300 rounded"
+            >
+              <option value="">Select Type</option>
+              <option value="in_person">In Person</option>
+              <option value="online">Online</option>
+              <option value="on_call">On Call</option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block mb-2">Date of Interview</label>
+            <input
+              type="date"
+              value={interviewDate}
+              onChange={(e) => setInterviewDate(e.target.value)}
+              className="block w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block mb-2">Interviewer Name</label>
+            <select
+              value={interviewerName}
+              onChange={(e) => setInterviewerName(e.target.value)}
+              className="block w-full p-2 border border-gray-300 rounded"
+            >
+              <option value="">Select Interviewer</option>
+              {personDetails.child_first_name && personDetails.child_last_name && (
+                <option value={`Child: ${personDetails.child_first_name} ${personDetails.child_last_name}`}>
+                  Child: {personDetails.child_first_name} {personDetails.child_last_name}
+                </option>
+              )}
+              {personDetails.child_collateral_first_name && personDetails.child_collateral_last_name && (
+                <option value={`Child Collateral: ${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}>
+                  Child Collateral: {personDetails.child_collateral_first_name} {personDetails.child_collateral_last_name}
+                </option>
+              )}
+              {personDetails.parent_collateral_first_name && personDetails.parent_collateral_last_name && (
+                <option value={`Parent Collateral: ${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}>
+                  Parent Collateral: {personDetails.parent_collateral_first_name} {personDetails.parent_collateral_last_name}
+                </option>
+              )}
+              {personDetails.other_contact_first_name && personDetails.other_contact_last_name && (
+                <option value={`Other Contact: ${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}>
+                  Other Contact: {personDetails.other_contact_first_name} {personDetails.other_contact_last_name}
+                </option>
+              )}
+            </select>
+          </div>
+
+          <button
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={handleNextClick}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
