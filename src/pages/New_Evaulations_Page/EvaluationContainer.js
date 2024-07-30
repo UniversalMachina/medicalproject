@@ -3,7 +3,7 @@ import { FaTrash } from 'react-icons/fa';
 import ContactInfoPopup from './ContactInfoPopup';
 import { useNavigate } from 'react-router-dom';
 
-const EvaluationContainer = ({ people }) => {
+const EvaluationContainer = () => {
   const navigate = useNavigate();
 
   const evaluationSections = [

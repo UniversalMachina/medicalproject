@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
@@ -10,15 +11,16 @@ const Evaulations = () => {
   const { theme } = useTheme(); // Get the current theme
 
   // Define the state for the list of people with dates
-  const [people, setPeople] = useState([
-    { name: "Eric Dekryger", date: "Apr, 10 2024" },
-    { name: "Kanishk Jagwani", date: "Apr, 11 2024" },
-    { name: "Thayla Ovalle PCE", date: "Apr, 12 2024" }
-  ]);
-
-  // Define the filter and sort states
+  const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("mostRecent");
+
+  // Fetch data from backend
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/people`)
+      .then(response => setPeople(response.data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
 
   // Filter and sort the people based on the filter and sort states
   const filteredPeople = people
