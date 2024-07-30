@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import ContactInfoPopup from './ContactInfoPopup';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const EvaluationContainer = () => {
+const NewEvaluationInputs = () => {
   const navigate = useNavigate();
 
   const evaluationSections = [
@@ -71,18 +72,19 @@ const EvaluationContainer = () => {
 
   const handleSubmit = () => {
     if (allFilled && evaluationName) {
-      let alertMessage = `Evaluation Name: ${evaluationName}\n\n`;
-      evaluationSections.forEach(section => {
-        if (contactInfo[section]) {
-          alertMessage += `${section}:\n`;
-          alertMessage += `First Name: ${contactInfo[section].firstName}\n`;
-          alertMessage += `Last Name: ${contactInfo[section].lastName}\n\n`;
-        }
-      });
-      alert(alertMessage);
-      navigate('/');
+      const newPerson = {
+        name: evaluationName,
+        date: new Date().toLocaleDateString(),
+      };
 
-      // Here you can add logic to submit the data
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/people`, newPerson)
+        .then(response => {
+          console.log('Person added:', response.data);
+          navigate('/');
+        })
+        .catch(error => {
+          console.error('Error adding person:', error);
+        });
     } else {
       alert('Please fill all sections and provide an evaluation name.');
     }
@@ -91,7 +93,7 @@ const EvaluationContainer = () => {
   return (
     <div className="absolute top-[304px] left-[351px] w-[1278px] h-auto flex flex-col items-start justify-start gap-[38px]">
       {/* Evaluation Name section */}
-      <div className="w-[1258px] h-auto bg-white flex flex-col  text-black font-poppins">
+      <div className="w-[1258px] h-auto bg-white flex flex-col text-black font-poppins">
         <div className="h-[25.3px] w-full relative font-semibold text-[30px]">
           Evaluation Name*
         </div>
@@ -152,4 +154,4 @@ const EvaluationContainer = () => {
   );
 };
 
-export default EvaluationContainer;
+export default NewEvaluationInputs;

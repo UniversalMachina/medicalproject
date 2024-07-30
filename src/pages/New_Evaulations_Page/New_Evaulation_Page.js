@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
-import EvaluationContainer from "./EvaluationContainer";
+import NewEvaluationInputs from "./NewEvaluationInputs";
 import Header from "./Header";
 
 const New_Evaulations = () => {
@@ -16,7 +16,7 @@ const New_Evaulations = () => {
       <SideMenu />
       <Header />
 
-      <EvaluationContainer />
+      <NewEvaluationInputs />
     </div>
   );
 };
