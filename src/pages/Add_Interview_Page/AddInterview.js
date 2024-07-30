@@ -37,8 +37,9 @@ const AddInterview = () => {
 
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/interviews`, interviewData)
       .then(response => {
+        const interviewId = response.data.interview_id;
         console.log(response.data);
-        navigate(`/interview/${id}`);
+        navigate(`/interview/${id}/${interviewId}`);
       })
       .catch(error => {
         console.error("There was an error uploading the interview!", error);

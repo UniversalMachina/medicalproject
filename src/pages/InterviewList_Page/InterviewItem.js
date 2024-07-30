@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const InterviewItem = ({ className = "", name, date }) => {
+const InterviewItem = ({ className = "", name, date, id, interviewid }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/interview/${encodeURIComponent(name)}/${encodeURIComponent(date)}`);
+    navigate(`/interview/${encodeURIComponent(id)}/${encodeURIComponent(interviewid)}`);
   };
 
   return (
