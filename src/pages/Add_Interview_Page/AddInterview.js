@@ -2,15 +2,23 @@ import React, { useState } from "react";
 import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
-import EvaluationContainer from "./EvaluationContainer";
-import FloatingButtons from "./FloatingButtons";
-import Header from "./Header";
-import { useParams } from "react-router-dom";
-import Evaulations3 from "./Evaulations3";
+import { useParams, useNavigate } from "react-router-dom";
 
 const AddInterview = () => {
   const { theme } = useTheme(); // Get the current theme
   const { name, date } = useParams(); // Get the URL parameters
+  const navigate = useNavigate(); // Get the navigate function from react-router-dom
+
+  const [audioFile, setAudioFile] = useState(null); // State to store the uploaded audio file
+
+  const handleFileChange = (e) => {
+    setAudioFile(e.target.files[0]);
+  };
+
+  const handleNextClick = () => {
+    // You can add any validation or processing logic here if needed
+    navigate(`/interview/${name}/${date}`);
+  };
 
   return (
     <div
@@ -21,44 +29,22 @@ const AddInterview = () => {
       <TopBar />
       <SideMenu />
 
-      <div className="absolute top-[169px] left-[276px] w-[1175px] flex flex-row items-start justify-start py-0 px-[75px] box-border max-w-full z-[2] text-13xl text-black font-poppins">
-        <div className="h-[22px] relative font-semibold inline-block mq450:text-lgi mq850:text-7xl">
-          Travis Durand Interview
+      <div className="absolute top-[144px] left-[351px] w-[1278px] h-[280px] flex flex-col items-start justify-start gap-[38px]">
+      <div className="p-4">
+        <h2 className="text-xl mb-4">Add Interview</h2>
+        
+        <div className="mb-4">
+          <label className="block mb-2">Upload Audio File</label>
+          <input type="file" accept="audio/*" onChange={handleFileChange} />
         </div>
+
+        <button
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={handleNextClick}
+        >
+          Next
+        </button>
       </div>
-
-      <Evaulations3 />
-
-      <div className="absolute top-[1212px] left-[351px] rounded-[20.23px] bg-white w-[1375px] h-[790px] overflow-hidden">
-        <div className="absolute top-[0px] left-[0px] w-6 h-6 overflow-hidden hidden" />
-      </div>
-
-      <div className="absolute top-[453px] left-[338px] text-3xl-1 leading-[34px] inline-block w-[545.8px] mq450:text-lg mq450:leading-[27px]">
-        Who was the interview with?
-      </div>
-
-      <div className="absolute top-[507px] left-[334px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pl-20 box-border max-w-full text-gray">
-        <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">{`Travis Durand `}</div>
-      </div>
-
-      <div className="absolute top-[604px] left-[338px] text-3xl-1 leading-[34px] inline-block w-[545.8px] mq450:text-lg mq450:leading-[27px]">
-        Date
-      </div>
-
-      <div className="absolute top-[653px] left-[334px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pl-20 box-border max-w-full text-gray">
-        <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
-          July, 15th, 2023
-        </div>
-      </div>
-
-      <div className="absolute top-[750px] left-[338px] text-3xl-1 leading-[34px] inline-block w-[545.8px] mq450:text-lg mq450:leading-[27px]">
-        Virtual
-      </div>
-
-      <div className="absolute top-[799px] left-[332px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pl-20 box-border max-w-full text-gray">
-        <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
-          In Person
-        </div>
       </div>
     </div>
   );

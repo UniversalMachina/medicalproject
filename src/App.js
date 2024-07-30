@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigationType, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./themeContext"; // Import the ThemeProvider
-import Evaulations from "./pages/Evaulations_Page/Evaulations";
-import Interviews from "./pages/Interviews";
+import Evaulations from "./pages/Evaulations_Page/Evaulation_Page";
 import Clients from "./pages/Client_Page/Clients";
 import PatientsInterviewPage from "./pages/PatientsInterviewPage";
-import New_Evaulations from "./pages/New_Evaulations_Page/New_Evaulations";
-import ProfileEvaulations from "./pages/ProfileEvaulation/ProfileEvaulations";
+import New_Evaulations from "./pages/New_Evaulations_Page/New_Evaulation_Page";
+import ProfileEvaulations from "./pages/InterviewList_Page/ProfileEvaulations";
 import AddInterview from "./pages/Add_Interview_Page/AddInterview";
+import Interview_info_page from "./pages/Interview_Info_Page/Interview_info_page";
 
 function App() {
   const action = useNavigationType();
@@ -64,9 +64,9 @@ function App() {
           <Route path="/new-evaluations" element={<New_Evaulations />} />
           <Route path="/evaluation/:name/:date" element={<ProfileEvaulations />} />
           <Route path="/addinterview/:name/:date" element={<AddInterview />} />
-          <Route path="/interview/:name/:date" element={<AddInterview />} />
+          <Route path="/interview/:name/:date" element={<Interview_info_page />} />
 
-          <Route path="/interviews" element={<Interviews />} />
+
           <Route path="/clients" element={<Clients />} />
           <Route path="/patients-interview-page" element={<PatientsInterviewPage />} />
         </Routes>

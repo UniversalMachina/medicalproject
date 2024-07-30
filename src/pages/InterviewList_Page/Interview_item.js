@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Evaulations1 = ({ className = "", name, date }) => {
+const Interview_item = ({ className = "", name, date }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/evaluation/${encodeURIComponent(name)}/${encodeURIComponent(date)}`);
+    navigate(`/interview/${encodeURIComponent(name)}/${encodeURIComponent(date)}`);
   };
 
   return (
@@ -35,10 +35,5 @@ const Evaulations1 = ({ className = "", name, date }) => {
   );
 };
 
-Evaulations1.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-};
 
-export default Evaulations1;
+export default Interview_item;

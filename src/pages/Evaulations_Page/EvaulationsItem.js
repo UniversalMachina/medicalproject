@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Evaulations1 = ({ className = "", name, date }) => {
+const EvaulationsItem = ({ className = "", name, date }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -35,10 +35,5 @@ const Evaulations1 = ({ className = "", name, date }) => {
   );
 };
 
-Evaulations1.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-};
 
-export default Evaulations1;
+export default EvaulationsItem;

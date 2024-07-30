@@ -5,17 +5,15 @@ import SideMenu from "../../components/SideMenu/SideMenu";
 import EvaluationContainer from "./EvaluationContainer";
 import FloatingButtons from "./FloatingButtons";
 import Header from "./Header";
-import { useParams } from 'react-router-dom';
 
-const ProfileEvaulations = () => {
+const Evaulations = () => {
   const { theme } = useTheme(); // Get the current theme
-  const { name, date } = useParams(); // Get the URL parameters
 
   // Define the state for the list of people with dates
   const [people, setPeople] = useState([
     { name: "Eric Dekryger", date: "Apr, 10 2024" },
-    { name: "Eric Dekryger", date: "Apr, 11 2024" },
-    { name: "Eric Dekryger", date: "Apr, 12 2024" }
+    { name: "Kanishk Jagwani", date: "Apr, 11 2024" },
+    { name: "Thayla Ovalle PCE", date: "Apr, 12 2024" }
   ]);
 
   // Define the filter and sort states
@@ -49,13 +47,10 @@ const ProfileEvaulations = () => {
       <TopBar />
       <SideMenu />
       <Header />
-      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} name={name} date={date}/>
-      {/* Pass the filtered and sorted people state to EvaluationContainer */}
+      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} />
       <EvaluationContainer people={filteredPeople} />
-      {/* <p>No evaluation found for {name} on {date}</p> */}
-
     </div>
   );
 };
 
-export default ProfileEvaulations;
+export default Evaulations;
