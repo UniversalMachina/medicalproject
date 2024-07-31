@@ -3,7 +3,6 @@ import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import { useParams } from "react-router-dom";
-import Evaulations3 from "./Evaulations3";
 import FileDownload from "./FileDownload"; // Import the FileDownload component
 import axios from "axios";
 
@@ -49,7 +48,7 @@ const Interview_info_page = () => {
         </div>
       </div>
 
-      <Evaulations3 />
+  
 
       <div className="absolute top-[1212px] left-[351px] rounded-[20.23px] bg-white w-[1375px] h-[790px] overflow-hidden">
         <div className="absolute top-[0px] left-[0px] w-6 h-6 overflow-hidden hidden" />
