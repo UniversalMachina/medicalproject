@@ -11,21 +11,25 @@ const Interview_info_page = () => {
   const { theme } = useTheme(); // Get the current theme
   const { id, interviewid } = useParams(); // Get the URL parameters
 
-
-
   const [interviewDetails, setInterviewDetails] = useState({
-    interview_date: '',
-    interviewer_name: '',
-    interview_type: ''
+    interview_date: "",
+    interviewer_name: "",
+    interview_type: "",
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}`)
-      .then(response => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}`
+      )
+      .then((response) => {
         setInterviewDetails(response.data);
       })
-      .catch(error => {
-        console.error("There was an error fetching the interview details!", error);
+      .catch((error) => {
+        console.error(
+          "There was an error fetching the interview details!",
+          error
+        );
       });
   }, [id, interviewid]);
 
@@ -40,8 +44,7 @@ const Interview_info_page = () => {
 
       <div className="absolute top-[169px] left-[276px] w-[1175px] flex flex-row items-start justify-start py-0 px-[75px] box-border max-w-full z-[2] text-13xl text-black font-poppins">
         <div className="h-[22px] relative font-semibold inline-block mq450:text-lgi mq850:text-7xl">
-       Travis Durand
-
+        {interviewDetails.interviewer_name}
         </div>
       </div>
 
@@ -56,7 +59,9 @@ const Interview_info_page = () => {
       </div>
 
       <div className="absolute top-[507px] left-[334px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pl-20 box-border max-w-full text-gray">
-        <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]"> {interviewDetails.interviewer_name} Interview</div>
+        <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
+          {interviewDetails.interviewer_name} Interview
+        </div>
       </div>
 
       <div className="absolute top-[604px] left-[338px] text-3xl-1 leading-[34px] inline-block w-[545.8px] mq450:text-lg mq450:leading-[27px]">
@@ -65,8 +70,7 @@ const Interview_info_page = () => {
 
       <div className="absolute top-[653px] left-[334px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pl-20 box-border max-w-full text-gray">
         <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
-        {interviewDetails.interview_date}
-
+          {interviewDetails.interview_date}
         </div>
       </div>
 
@@ -76,8 +80,7 @@ const Interview_info_page = () => {
 
       <div className="absolute top-[799px] left-[332px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pl-20 box-border max-w-full text-gray">
         <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
-        {interviewDetails.interview_type}
-
+          {interviewDetails.interview_type}
         </div>
       </div>
     </div>
