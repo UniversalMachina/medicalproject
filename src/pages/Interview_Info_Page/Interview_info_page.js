@@ -1,10 +1,10 @@
+import React, { useState, useEffect } from "react";
 import { useTheme } from "../../themeContext"; // Import the custom hook
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
-import React, { useState, useEffect } from "react";
-
 import { useParams } from "react-router-dom";
 import Evaulations3 from "./Evaulations3";
+import FileDownload from "./FileDownload"; // Import the FileDownload component
 import axios from "axios";
 
 const Interview_info_page = () => {
@@ -15,6 +15,7 @@ const Interview_info_page = () => {
     interview_date: "",
     interviewer_name: "",
     interview_type: "",
+    audio_file: "" // Add audio_file to the state
   });
 
   useEffect(() => {
@@ -83,6 +84,10 @@ const Interview_info_page = () => {
           {interviewDetails.interview_type}
         </div>
       </div>
+
+      {interviewDetails.audio_file && (
+        <FileDownload audioFile={interviewDetails.audio_file} />
+      )}
     </div>
   );
 };

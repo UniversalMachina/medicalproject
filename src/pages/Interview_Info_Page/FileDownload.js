@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
 
-const FileDownload = ({ className = "" }) => {
+const FileDownload = ({ audioFile, className = "" }) => {
+  const handleDownload = () => {
+    window.open(audioFile, '_blank');
+  };
+
   return (
     <div
       className={`absolute top-[274px] left-[351px] rounded-[20.23px] bg-thistle w-[1339px] overflow-hidden flex flex-row items-start justify-between py-8 pr-[90px] pl-[57px] box-border gap-[20px] max-w-full text-left text-base-9 text-white font-poppins mq675:flex-wrap ${className}`}
+      onClick={handleDownload} // Add the click handler
     >
       <div className="h-6 w-6 relative overflow-hidden shrink-0 hidden" />
       <div className="w-[285px] flex flex-row items-start justify-start gap-[40px]">
@@ -20,7 +25,7 @@ const FileDownload = ({ className = "" }) => {
           />
         </div>
         <div className="flex-1 flex flex-col items-start justify-start pt-[12.1px] px-0 pb-0">
-          <div className="self-stretch relative font-semibold">Sample.mp4</div>
+          <div className="self-stretch relative font-semibold">Download Audio File</div>
         </div>
       </div>
       <img
@@ -32,7 +37,8 @@ const FileDownload = ({ className = "" }) => {
   );
 };
 
-Evaulations3.propTypes = {
+FileDownload.propTypes = {
+  audioFile: PropTypes.string.isRequired, // Ensure audioFile is required
   className: PropTypes.string,
 };
 
