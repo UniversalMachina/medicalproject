@@ -13,6 +13,7 @@ const AddInterview = () => {
   const [interviewType, setInterviewType] = useState("");
   const [interviewDate, setInterviewDate] = useState("");
   const [interviewerName, setInterviewerName] = useState("");
+  const [audioFile, setAudioFile] = useState(null);
   const [personDetails, setPersonDetails] = useState({});
 
   useEffect(() => {
@@ -27,15 +28,25 @@ const AddInterview = () => {
     }
   }, [id]);
 
-  const handleNextClick = () => {
-    const interviewData = {
-      interview_type: interviewType,
-      interview_date: interviewDate,
-      interviewer_name: interviewerName,
-      person_id: id,
-    };
+  const handleFileChange = (event) => {
+    setAudioFile(event.target.files[0]);
+  };
 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/interviews`, interviewData)
+  const handleNextClick = () => {
+    const interviewData = new FormData();
+    interviewData.append('interview_type', interviewType);
+    interviewData.append('interview_date', interviewDate);
+    interviewData.append('interviewer_name', interviewerName);
+    interviewData.append('person_id', id);
+    if (audioFile) {
+      interviewData.append('audio_file', audioFile);
+    }
+
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/interviews`, interviewData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then(response => {
         const interviewId = response.data.interview_id;
         console.log(response.data);
@@ -123,6 +134,16 @@ const AddInterview = () => {
                 </option>
               )}
             </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block mb-2">Audio File</label>
+            <input
+              type="file"
+              accept="audio/*"
+              onChange={handleFileChange}
+              className="block w-full p-2 border border-gray-300 rounded"
+            />
           </div>
 
           <button
