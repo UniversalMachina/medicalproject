@@ -4,6 +4,7 @@ import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import { useParams } from "react-router-dom";
 import FileDownload from "./FileDownload"; // Import the FileDownload component
+import Transcription from "./Transcription"; // Import the Transcription component
 import axios from "axios";
 
 const Interview_info_page = () => {
@@ -48,8 +49,6 @@ const Interview_info_page = () => {
         </div>
       </div>
 
-  
-
       <div className="absolute top-[1212px] left-[351px] rounded-[20.23px] bg-white w-[1375px] h-[790px] overflow-hidden">
         <div className="absolute top-[0px] left-[0px] w-6 h-6 overflow-hidden hidden" />
       </div>
@@ -87,8 +86,18 @@ const Interview_info_page = () => {
       {interviewDetails.audio_file && (
         <FileDownload audioFile={interviewDetails.audio_file} />
       )}
+
+
+
+      <div className="absolute top-[899px] left-[332px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pb-[20px] pl-20 box-border max-w-full text-gray">
+        <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
+        <Transcription />
+        </div>
+      </div> 
+
+    
     </div>
   );
 };
 
-export default Interview_info_page;
+export default Interview_info_page
