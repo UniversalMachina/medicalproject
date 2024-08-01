@@ -11,6 +11,7 @@ module.exports = {
         "color-primary-100": "#986cf5",
         "color-black-100": "#1e1e1e",
         purple: "#decffc",
+        "purple-100": "#f3e8ff",  // Adding the lighter shade of purple
         gray2: "#84848a",
         "color-black-50": "#9a9a9a",
         "color-white-75": "#f2f2f2",

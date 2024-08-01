@@ -8,6 +8,7 @@ import New_Evaulations from "./pages/New_Evaulations_Page/New_Evaulation_Page";
 import ProfileEvaulations from "./pages/InterviewList_Page/ProfileEvaulations";
 import AddInterview from "./pages/Add_Interview_Page/AddInterview";
 import Interview_info_page from "./pages/Interview_Info_Page/Interview_info_page";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   const action = useNavigationType();
@@ -65,7 +66,7 @@ function App() {
           <Route path="/evaluation/:id" element={<ProfileEvaulations />} />
           <Route path="/addinterview/:id" element={<AddInterview />} />
           <Route path="/interview/:id/:interviewid" element={<Interview_info_page />} />
-
+          <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/clients" element={<Clients />} />
           <Route path="/patients-interview-page" element={<PatientsInterviewPage />} />
