@@ -114,22 +114,22 @@ const AddInterview = () => {
             >
               <option value="">Select Interviewer</option>
               {personDetails.child_first_name && personDetails.child_last_name && (
-                <option value={`Child: ${personDetails.child_first_name} ${personDetails.child_last_name}`}>
+                <option value={`${personDetails.child_first_name} ${personDetails.child_last_name}`}>
                   Child: {personDetails.child_first_name} {personDetails.child_last_name}
                 </option>
               )}
               {personDetails.child_collateral_first_name && personDetails.child_collateral_last_name && (
-                <option value={`Child Collateral: ${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}>
+                <option value={`${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}>
                   Child Collateral: {personDetails.child_collateral_first_name} {personDetails.child_collateral_last_name}
                 </option>
               )}
               {personDetails.parent_collateral_first_name && personDetails.parent_collateral_last_name && (
-                <option value={`Parent Collateral: ${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}>
+                <option value={`${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}>
                   Parent Collateral: {personDetails.parent_collateral_first_name} {personDetails.parent_collateral_last_name}
                 </option>
               )}
               {personDetails.other_contact_first_name && personDetails.other_contact_last_name && (
-                <option value={`Other Contact: ${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}>
+                <option value={`${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}>
                   Other Contact: {personDetails.other_contact_first_name} {personDetails.other_contact_last_name}
                 </option>
               )}

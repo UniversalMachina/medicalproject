@@ -46,7 +46,7 @@ const Evaulations = () => {
 
   return (
     <div className={`w-full h-[1080px] relative overflow-hidden text-left text-sm font-poppins ${theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"}`}>
-      <TopBar />
+      <TopBar title={"Evaluations"}/>
       <SideMenu />
       <Header />
       <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} />

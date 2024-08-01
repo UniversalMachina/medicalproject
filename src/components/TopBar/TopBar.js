@@ -6,17 +6,16 @@ import NotificationIcon from './NotificationIcon';
 import UserProfile from './UserProfile';
 import DateRangeButtons from './DateRangeButtons';
 
-const TopBar = () => {
+const TopBar = ({title=""}) => {
   return (
     <div className="absolute top-0 left-0 w-full h-[106px] flex items-center justify-end pr-[40px] bg-color-white-100 text-black1 text-xl">
       <div className="flex items-center justify-between w-full max-w-[1531px] p-5">
         <div className="flex items-center">
-          <Logo />
+        <div className="font-semibold">{title}</div>
         </div>
         <div className="flex items-center gap-12 text-white pr-[80px]">
           <ThemeToggle />
-          {/* <AddEvaluationsButton /> */}
-          {/* <NotificationIcon /> */}
+
           <UserProfile />
         </div>
       </div>
