@@ -11,7 +11,7 @@ const EvaulationsItem = ({ className = "", name, date, id }) => {
 
   return (
     <div
-      className={`w-[1278px] h-[68px] rounded-[20.23px] bg-thistle overflow-hidden shrink-0 flex flex-row items-start justify-start pt-[21.9px] pb-[17.3px] pr-[28.3px] pl-8 box-border gap-[856px] text-left text-base-9 text-white font-poppins ${className}`}
+      className={`w-[1278px] h-[68px] cursor-pointer rounded-[20.23px] bg-thistle overflow-hidden shrink-0 flex flex-row items-start justify-start pt-[21.9px] pb-[17.3px] pr-[28.3px] pl-8 box-border gap-[856px] text-left text-base-9 text-white font-poppins ${className}`}
       onClick={handleClick}
     >
       <div className="h-[25.3px] w-[199px] relative font-semibold inline-block shrink-0">
