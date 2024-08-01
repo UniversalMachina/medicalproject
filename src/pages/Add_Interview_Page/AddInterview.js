@@ -4,6 +4,7 @@ import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaCheckCircle } from "react-icons/fa";
 
 const AddInterview = () => {
   const { theme } = useTheme();
@@ -18,12 +19,16 @@ const AddInterview = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/people/${id}`)
-        .then(response => {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/people/${id}`)
+        .then((response) => {
           setPersonDetails(response.data);
         })
-        .catch(error => {
-          console.error("There was an error fetching the person's details!", error);
+        .catch((error) => {
+          console.error(
+            "There was an error fetching the person's details!",
+            error
+          );
         });
     }
   }, [id]);
@@ -34,27 +39,32 @@ const AddInterview = () => {
 
   const handleNextClick = () => {
     const interviewData = new FormData();
-    interviewData.append('interview_type', interviewType);
-    interviewData.append('interview_date', interviewDate);
-    interviewData.append('interviewer_name', interviewerName);
-    interviewData.append('person_id', id);
+    interviewData.append("interview_type", interviewType);
+    interviewData.append("interview_date", interviewDate);
+    interviewData.append("interviewer_name", interviewerName);
+    interviewData.append("person_id", id);
     if (audioFile) {
-      interviewData.append('audio_file', audioFile);
+      interviewData.append("audio_file", audioFile);
     }
 
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/interviews`, interviewData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then(response => {
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_URL}/interviews`, interviewData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
         const interviewId = response.data.interview_id;
         console.log(response.data);
         navigate(`/interview/${id}/${interviewId}`);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("There was an error uploading the interview!", error);
       });
+  };
+
+  const isFormComplete = () => {
+    return interviewType && interviewDate && interviewerName && audioFile;
   };
 
   return (
@@ -74,7 +84,7 @@ const AddInterview = () => {
             <select
               value={interviewType}
               onChange={(e) => setInterviewType(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
             >
               <option value="">Select Type</option>
               <option value="in_person">In Person</option>
@@ -89,7 +99,7 @@ const AddInterview = () => {
               type="date"
               value={interviewDate}
               onChange={(e) => setInterviewDate(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
           </div>
 
@@ -98,45 +108,93 @@ const AddInterview = () => {
             <select
               value={interviewerName}
               onChange={(e) => setInterviewerName(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
             >
               <option value="">Select Interviewer</option>
               {personDetails.child_first_name && personDetails.child_last_name && (
-                <option value={`${personDetails.child_first_name} ${personDetails.child_last_name}`}>
-                  Child: {personDetails.child_first_name} {personDetails.child_last_name}
+                <option
+                  value={`${personDetails.child_first_name} ${personDetails.child_last_name}`}
+                >
+                  Child: {personDetails.child_first_name}{" "}
+                  {personDetails.child_last_name}
                 </option>
               )}
-              {personDetails.child_collateral_first_name && personDetails.child_collateral_last_name && (
-                <option value={`${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}>
-                  Child Collateral: {personDetails.child_collateral_first_name} {personDetails.child_collateral_last_name}
-                </option>
-              )}
-              {personDetails.parent_collateral_first_name && personDetails.parent_collateral_last_name && (
-                <option value={`${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}>
-                  Parent Collateral: {personDetails.parent_collateral_first_name} {personDetails.parent_collateral_last_name}
-                </option>
-              )}
-              {personDetails.other_contact_first_name && personDetails.other_contact_last_name && (
-                <option value={`${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}>
-                  Other Contact: {personDetails.other_contact_first_name} {personDetails.other_contact_last_name}
-                </option>
-              )}
+              {personDetails.child_collateral_first_name &&
+                personDetails.child_collateral_last_name && (
+                  <option
+                    value={`${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}
+                  >
+                    Child Collateral:{" "}
+                    {personDetails.child_collateral_first_name}{" "}
+                    {personDetails.child_collateral_last_name}
+                  </option>
+                )}
+              {personDetails.parent_collateral_first_name &&
+                personDetails.parent_collateral_last_name && (
+                  <option
+                    value={`${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}
+                  >
+                    Parent Collateral:{" "}
+                    {personDetails.parent_collateral_first_name}{" "}
+                    {personDetails.parent_collateral_last_name}
+                  </option>
+                )}
+              {personDetails.other_contact_first_name &&
+                personDetails.other_contact_last_name && (
+                  <option
+                    value={`${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}
+                  >
+                    Other Contact: {personDetails.other_contact_first_name}{" "}
+                    {personDetails.other_contact_last_name}
+                  </option>
+                )}
             </select>
           </div>
 
           <div>
             <label className="block mb-2 font-medium">Audio File</label>
-            <input
-              type="file"
-              accept="audio/*"
-              onChange={handleFileChange}
-              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <div className="border-2 border-dashed border-gray-300 rounded p-4 text-center">
+              <input
+                type="file"
+                accept="audio/*"
+                onChange={handleFileChange}
+                className="hidden"
+                id="audio-file-input"
+              />
+              <label
+                htmlFor="audio-file-input"
+                className="cursor-pointer text-gray-500"
+              >
+                <div className="flex flex-col items-center justify-center">
+                  {audioFile ? (
+                    <FaCheckCircle className="text-green-500 text-2xl mb-2" />
+                  ) : (
+                    <span className="text-lg font-medium">
+                      Upload Audio File
+                    </span>
+                  )}
+                  <span className="mt-2 text-sm text-gray-400">
+                    Attach file. File size of your documents should not exceed
+                    10MB.
+                  </span>
+                </div>
+              </label>
+            </div>
+            {audioFile && (
+              <div className="mt-2 text-gray-500">
+                {audioFile.name}
+              </div>
+            )}
           </div>
 
           <button
-            className="w-full py-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={`w-full py-3 rounded ${
+              isFormComplete()
+                ? "bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
             onClick={handleNextClick}
+            disabled={!isFormComplete()}
           >
             Next
           </button>
