@@ -1,4 +1,21 @@
-const ClientListItem = ({ id, name, date, evaluatedParentFirstName, evaluatedParentLastName, childFirstName, childLastName, childCollateralFirstName, childCollateralLastName, parentCollateralFirstName, parentCollateralLastName, status, onDelete }) => {
+import React from 'react';
+
+const ClientListItem = ({
+  id,
+  name,
+  date,
+  evaluatedParentFirstName,
+  evaluatedParentLastName,
+  childFirstName,
+  childLastName,
+  childCollateralFirstName,
+  childCollateralLastName,
+  parentCollateralFirstName,
+  parentCollateralLastName,
+  status,
+  onDelete,
+  onStatusChange
+}) => {
   return (
     <div className="self-stretch bg-white overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
@@ -23,7 +40,10 @@ const ClientListItem = ({ id, name, date, evaluatedParentFirstName, evaluatedPar
         <span className="flex-1 relative">{parentCollateralFirstName} {parentCollateralLastName}</span>
       </div>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
-        <span className="flex-1 relative">{status}</span> {/* Display status */}
+        <select value={status} onChange={(e) => onStatusChange(id, e.target.value)}>
+          <option value="waitlist">Waitlist</option>
+          <option value="evaluated">Evaluated</option>
+        </select>
       </div>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
         <button onClick={onDelete}>Delete</button>

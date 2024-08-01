@@ -8,7 +8,7 @@ const Table = () => {
   const [clients, setClients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3); // Set this to 3
+  const [itemsPerPage, setItemsPerPage] = useState(3);
   const [filteredClients, setFilteredClients] = useState([]);
   const [currentClients, setCurrentClients] = useState([]);
 
@@ -54,6 +54,20 @@ const Table = () => {
     const updatedClients = clients.filter((client) => client.id !== id);
     setClients(updatedClients);
     updateFilteredClients();
+  }, [clients]);
+
+  const handleStatusChange = useCallback((id, status) => {
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/people/${id}/status`, { status })
+      .then(() => {
+        const updatedClients = clients.map(client => 
+          client.id === id ? { ...client, status } : client
+        );
+        setClients(updatedClients);
+        updateFilteredClients();
+      })
+      .catch(error => {
+        console.error("Error updating status:", error);
+      });
   }, [clients]);
 
   const debouncedHandleSearch = useCallback(
@@ -116,7 +130,7 @@ const Table = () => {
           <b className="flex-1 relative">Parent Collateral</b>
         </div>
         <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
-          <b className="flex-1 relative">Status</b> {/* Replace Other Contact with Status */}
+          <b className="flex-1 relative">Status</b>
         </div>
         <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
           <b className="flex-1 relative">Actions</b>
@@ -136,8 +150,9 @@ const Table = () => {
           childCollateralLastName={client.child_collateral_last_name}
           parentCollateralFirstName={client.parent_collateral_first_name}
           parentCollateralLastName={client.parent_collateral_last_name}
-          status={client.status}  // Add status prop
+          status={client.status}
           onDelete={() => handleDelete(client.id)}
+          onStatusChange={handleStatusChange}
         />
       ))}
       <Pagination
