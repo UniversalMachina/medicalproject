@@ -40,7 +40,7 @@ const Interview_info_page = () => {
         theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"
       }`}
     >
-      <TopBar />
+      <TopBar title={"Interview Info"} backUrl={`/evaluation/${id}`}/>
       <SideMenu />
 
       <div className="absolute top-[169px] left-[276px] w-[1175px] flex flex-row items-start justify-start py-0 px-[75px] box-border max-w-full z-[2] text-13xl text-black font-poppins">

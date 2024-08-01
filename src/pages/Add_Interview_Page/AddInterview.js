@@ -63,7 +63,7 @@ const AddInterview = () => {
         theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"
       }`}
     >
-      <TopBar />
+      <TopBar title={"Add Interview"} backUrl={`/evaluation/${id}`}/>
       <SideMenu />
       <div className="absolute top-[144px] left-[351px] w-[1278px] h-[280px] flex flex-col items-start justify-start gap-[38px]">
         <div className="p-4">

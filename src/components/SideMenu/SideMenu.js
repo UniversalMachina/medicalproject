@@ -5,8 +5,9 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { FaRegFileAlt, FaTachometerAlt, FaUsers } from 'react-icons/fa';
 
-const SideMenu = () => {
+const SideMenu = ({ activePage = "" }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -16,12 +17,30 @@ const SideMenu = () => {
   };
 
   const menuItems = [
-    { name: "Evaluations", path: "/", icon: "/icondocumenttext.svg" },
-    { name: "Dashboard", path: "/dashboard", icon: "/icondashboard.svg" },
-    { name: "Clients", path: "/clients", icon: "/iconmessage1.svg" },
-
-  
+    { name: "Evaluations", path: "/", icon: FaRegFileAlt },
+    { name: "Dashboard", path: "/dashboard", icon: FaTachometerAlt },
+    { name: "Clients", path: "/clients", icon: FaUsers },
   ];
+
+  const getHighlightClass = (name) => {
+    if (name === activePage ||
+        (activePage === "" && currentPath === "/" && name === "Evaluations") ||
+        (activePage === "" && currentPath === menuItems.find(item => item.name === name)?.path)) {
+      return `bg-color-primary-100 text-color-white-100 ${
+        isCollapsed ? "w-[25px]" : "w-[85%]"
+      }`;
+    }
+    return "";
+  };
+
+  const getIconColor = (name) => {
+    if (name === activePage ||
+        (activePage === "" && currentPath === "/" && name === "Evaluations") ||
+        (activePage === "" && currentPath === menuItems.find(item => item.name === name)?.path)) {
+      return "text-white";
+    }
+    return "text-black";
+  };
 
   return (
     <div
@@ -43,32 +62,18 @@ const SideMenu = () => {
           </button>
         </div>
         <div className="p-[30px]">
-          {menuItems.slice(0, 4).map((item, index) => (
+          {menuItems.map((item) => (
             <Link
               to={item.path}
               key={item.name}
-              className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${
-                currentPath === item.path ||
-                (currentPath === "/" && index === 0)
-                  ? `bg-color-primary-100 text-color-white-100 ${
-                      isCollapsed ? "w-[25px]" : "w-[85%]"
-                    }`
-                  : ""
-              }`}
+              className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${getHighlightClass(item.name)}`}
             >
-              <img
-                className="h-6 w-6"
-                alt={`${item.name} Icon`}
-                src={item.icon}
+              <item.icon
+                className={`h-6 w-6 ${getIconColor(item.name)}`}
               />
               {!isCollapsed && (
                 <div
-                  className={`font-semibold ${
-                    currentPath === item.path ||
-                    (currentPath === "/" && index === 0)
-                      ? "text-color-white-100"
-                      : ""
-                  }`}
+                  className={`font-semibold ${getHighlightClass(item.name) ? "text-color-white-100" : ""}`}
                 >
                   {item.name}
                 </div>
@@ -89,7 +94,7 @@ const SideMenu = () => {
             to="/logout"
             className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 bg-color-primary-100 text-color-white-100`}
           >
-            <img className="h-6 w-6" alt="Log out Icon" src="/ionlogout.svg" />
+            <FontAwesomeIcon icon={faChevronRight} className="h-6 w-6 text-white" />
             <div
               className={`font-semibold ${
                 currentPath === "/logout" ? "text-color-white-100" : ""
