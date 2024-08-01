@@ -73,6 +73,22 @@ const COLORS = [
   "#85A9FF",
 ];
 
+const CustomBackground = (props) => {
+  const { fill, x, y, width, height } = props;
+
+  return (
+    <rect
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      fill={fill}
+      rx={10}
+      ry={10}
+    />
+  );
+};
+
 const Dashboard = () => {
   return (
     <div className="w-full min-h-screen overflow-hidden leading-normal tracking-normal text-left text-sm text-gray-700 font-sans bg-purple-100">
@@ -87,12 +103,15 @@ const Dashboard = () => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="value" fill="#4682B4" barSize={15} radius={[10, 10, 0, 0]}>
+              <Bar
+                dataKey="value"
+                fill="#B0C4DE"
+                barSize={15}
+                radius={[10, 10, 0, 0]}
+                background={<CustomBackground fill="#E6E6FA" />}
+              >
                 {raceData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill="#4682B4"
-                  />
+                  <Cell key={`cell-${index}`} fill="#4682B4" />
                 ))}
               </Bar>
             </BarChart>
@@ -107,12 +126,15 @@ const Dashboard = () => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="value" fill="#FFD700" barSize={15} radius={[10, 10, 0, 0]}>
+              <Bar
+                dataKey="value"
+                fill="#FFECB3"
+                barSize={15}
+                radius={[10, 10, 0, 0]}
+                background={<CustomBackground fill="#FFF8DC" />}
+              >
                 {ageData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill="#FFD700"
-                  />
+                  <Cell key={`cell-${index}`} fill="#FFD700" />
                 ))}
               </Bar>
             </BarChart>
@@ -127,12 +149,15 @@ const Dashboard = () => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="value" fill="#A9A9A9" barSize={15} radius={[10, 10, 0, 0]}>
+              <Bar
+                dataKey="value"
+                fill="#D3D3D3"
+                barSize={15}
+                radius={[10, 10, 0, 0]}
+                background={<CustomBackground fill="#E0E0E0" />}
+              >
                 {childrenData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill="#A9A9A9"
-                  />
+                  <Cell key={`cell-${index}`} fill="#A9A9A9" />
                 ))}
               </Bar>
             </BarChart>
