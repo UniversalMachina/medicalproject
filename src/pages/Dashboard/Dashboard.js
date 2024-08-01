@@ -10,6 +10,7 @@ import {
   Pie,
   Cell,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 import Earning from "./Earning";
 import SideMenu from "../../components/SideMenu/SideMenu";
@@ -185,6 +186,7 @@ const Dashboard = () => {
                 ))}
               </Pie>
               <Tooltip />
+              <Legend verticalAlign="top" height={36}/>
             </PieChart>
           </ResponsiveContainer>
         </div>
