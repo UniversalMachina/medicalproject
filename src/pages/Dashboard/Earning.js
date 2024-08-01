@@ -5,7 +5,7 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 const Earning = ({ className = "" }) => {
   return (
     <div
-      className={`absolute top-[57px] left-[617px] shadow-[0px_5px_30px_rgba(226,_236,_249,_0.3)] rounded-[100px] bg-white flex flex-row items-end justify-start pt-[30px] pb-8 pl-[53px] pr-[47px] box-border gap-[55.3px] max-w-full text-left text-sm text-darkgray-100 font-poppins mq925:flex-wrap ${className}`}
+      className={`absolute top-[20px] left-[617px] shadow-[0px_5px_30px_rgba(226,_236,_249,_0.3)] rounded-[100px] bg-white flex flex-row items-end justify-start pt-[30px] pb-8 pl-[53px] pr-[47px] box-border gap-[55.3px] max-w-full text-left text-sm text-darkgray-100 font-poppins mq925:flex-wrap ${className}`}
     >
       <div className="h-[87px] w-[272px] flex flex-row items-start justify-start gap-[30px]">
         <div className="flex-1 flex flex-col items-start justify-start pt-px px-0 pb-0">
