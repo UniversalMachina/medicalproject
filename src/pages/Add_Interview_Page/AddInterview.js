@@ -59,34 +59,22 @@ const AddInterview = () => {
 
   return (
     <div
-      className={`w-full h-[1080px] relative overflow-hidden text-left text-sm font-poppins ${
-        theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"
+      className={`w-full min-h-screen relative overflow-hidden text-left text-sm font-poppins ${
+        theme === "dark" ? "bg-black text-white" : "bg-white text-gray-800"
       }`}
     >
-      <TopBar title={"Add Interview"} backUrl={`/evaluation/${id}`}/>
+      <TopBar title={"Add Interview"} backUrl={`/evaluation/${id}`} />
       <SideMenu />
-      <div className="absolute top-[144px] left-[351px] w-[1278px] h-[280px] flex flex-col items-start justify-start gap-[38px]">
-        <div className="p-4">
-          <h2 className="text-xl mb-4">Add Interview</h2>
-          
-          {personDetails && (
-            <div className="mb-4">
-              <h3>Person Details</h3>
-              <p>Name: {personDetails.name}</p>
-              <p>Evaluated Parent: {personDetails.evaluated_parent_first_name} {personDetails.evaluated_parent_last_name}</p>
-              <p>Child: {personDetails.child_first_name} {personDetails.child_last_name}</p>
-              <p>Child Collateral: {personDetails.child_collateral_first_name} {personDetails.child_collateral_last_name}</p>
-              <p>Parent Collateral: {personDetails.parent_collateral_first_name} {personDetails.parent_collateral_last_name}</p>
-              <p>Other Contact: {personDetails.other_contact_first_name} {personDetails.other_contact_last_name}</p>
-            </div>
-          )}
+      <div className="absolute top-[144px] left-[351px] w-[calc(100%-351px)] px-8 py-6 flex flex-col items-start justify-start">
+        <h2 className="text-2xl font-semibold mb-6">Add Interview</h2>
 
-          <div className="mb-4">
-            <label className="block mb-2">Type of Interview</label>
+        <div className="w-full max-w-xl space-y-6">
+          <div>
+            <label className="block mb-2 font-medium">Type of Interview</label>
             <select
               value={interviewType}
               onChange={(e) => setInterviewType(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Type</option>
               <option value="in_person">In Person</option>
@@ -95,22 +83,22 @@ const AddInterview = () => {
             </select>
           </div>
 
-          <div className="mb-4">
-            <label className="block mb-2">Date of Interview</label>
+          <div>
+            <label className="block mb-2 font-medium">Date of Interview</label>
             <input
               type="date"
               value={interviewDate}
               onChange={(e) => setInterviewDate(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block mb-2">Interviewer Name</label>
+          <div>
+            <label className="block mb-2 font-medium">Interviewer Name</label>
             <select
               value={interviewerName}
               onChange={(e) => setInterviewerName(e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Interviewer</option>
               {personDetails.child_first_name && personDetails.child_last_name && (
@@ -136,18 +124,18 @@ const AddInterview = () => {
             </select>
           </div>
 
-          <div className="mb-4">
-            <label className="block mb-2">Audio File</label>
+          <div>
+            <label className="block mb-2 font-medium">Audio File</label>
             <input
               type="file"
               accept="audio/*"
               onChange={handleFileChange}
-              className="block w-full p-2 border border-gray-300 rounded"
+              className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <button
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            className="w-full py-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onClick={handleNextClick}
           >
             Next
