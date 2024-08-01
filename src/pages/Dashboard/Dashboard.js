@@ -107,7 +107,7 @@ const Dashboard = () => {
                 dataKey="value"
                 fill="#B0C4DE"
                 barSize={15}
-                radius={[10, 10, 0, 0]}
+                radius={[10, 10, 10, 10]}
                 background={<CustomBackground fill="#E6E6FA" />}
               >
                 {raceData.map((entry, index) => (
@@ -130,7 +130,7 @@ const Dashboard = () => {
                 dataKey="value"
                 fill="#FFECB3"
                 barSize={15}
-                radius={[10, 10, 0, 0]}
+                radius={[10, 10, 10, 10]}
                 background={<CustomBackground fill="#FFF8DC" />}
               >
                 {ageData.map((entry, index) => (
@@ -153,7 +153,7 @@ const Dashboard = () => {
                 dataKey="value"
                 fill="#D3D3D3"
                 barSize={15}
-                radius={[10, 10, 0, 0]}
+                radius={[10, 10, 10, 10]}
                 background={<CustomBackground fill="#E0E0E0" />}
               >
                 {childrenData.map((entry, index) => (
