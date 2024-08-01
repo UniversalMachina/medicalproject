@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ClientListItem = ({
   id,
@@ -19,6 +19,20 @@ const ClientListItem = ({
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+  const [waitlistDuration, setWaitlistDuration] = useState('');
+
+  useEffect(() => {
+    if (status === 'waitlist' && waitlistDate) {
+      const calculateWaitlistDuration = () => {
+        const currentDate = new Date();
+        const waitlistStartDate = new Date(waitlistDate);
+        const diffTime = Math.abs(currentDate - waitlistStartDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        setWaitlistDuration(`${diffDays} day(s)`);
+      };
+      calculateWaitlistDuration();
+    }
+  }, [status, waitlistDate]);
 
   const handleMouseEnter = (e) => {
     if (status === 'waitlist') {
@@ -86,7 +100,7 @@ const ClientListItem = ({
               zIndex: 1000
             }}
           >
-            Waitlist Date: {waitlistDate}
+            On waitlist for: {waitlistDuration}
           </div>
         )}
       </div>
