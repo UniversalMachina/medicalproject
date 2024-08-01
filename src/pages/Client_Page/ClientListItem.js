@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 const ClientListItem = ({
   id,
@@ -105,7 +106,13 @@ const ClientListItem = ({
         )}
       </div>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
-        <button onClick={onDelete}>Delete</button>
+        <button 
+          onClick={onDelete} 
+          className="flex items-center justify-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        >
+          <FaTrash className="mr-2" />
+          Delete
+        </button>
       </div>
     </div>
   );
