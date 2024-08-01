@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import ClientListHeader from "./ClientListHeader";
 import ClientListItem from "./ClientListItem";
 import Pagination from "./Pagination";
 import debounce from "lodash.debounce";
@@ -94,7 +93,35 @@ const Table = () => {
           </div>
         </div>
       </div>
-      <ClientListHeader />
+      <div className="self-stretch bg-white overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">ID</b>
+        </div>
+        <div className="flex-1 bg-white flex flex-row items-start justify-start mq450:w-[calc(100%_-_40px)]">
+          <b className="flex-1 relative">Name</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">Date</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">Evaluated Parent</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">Child</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">Child Collateral</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">Parent Collateral</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+          <b className="flex-1 relative">Other Contact</b>
+        </div>
+        <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
+          <b className="flex-1 relative">Actions</b>
+        </div>
+      </div>
       {currentClients.map((client) => (
         <ClientListItem
           key={client.id}
