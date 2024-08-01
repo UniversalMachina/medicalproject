@@ -151,6 +151,7 @@ const Table = () => {
           parentCollateralFirstName={client.parent_collateral_first_name}
           parentCollateralLastName={client.parent_collateral_last_name}
           status={client.status}
+          waitlistDate={client.waitlist_date}
           onDelete={() => handleDelete(client.id)}
           onStatusChange={handleStatusChange}
         />
