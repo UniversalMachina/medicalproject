@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Transcription = () => {
+const Transcription = ({ setIsTranscriptionAvailable }) => {
   const { id, interviewid } = useParams();
   const [transcription, setTranscription] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -13,12 +13,15 @@ const Transcription = () => {
       .then((response) => {
         setTranscription(response.data.transcription);
         setIsLoading(false);
+        if (response.data.transcription !== "Transcription not available") {
+          setIsTranscriptionAvailable(true);
+        }
       })
       .catch((error) => {
         console.error("There was an error fetching the transcription!", error);
         setIsLoading(false);
       });
-  }, [id, interviewid]);
+  }, [id, interviewid, setIsTranscriptionAvailable]);
 
   const handleGenerateTranscription = () => {
     const newTranscription = "This is the transcribed text";
@@ -28,6 +31,7 @@ const Transcription = () => {
       })
       .then((response) => {
         setTranscription(newTranscription);
+        setIsTranscriptionAvailable(true);
       })
       .catch((error) => {
         console.error("There was an error generating the transcription!", error);
