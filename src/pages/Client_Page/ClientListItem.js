@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ClientListItem = ({
   id,
@@ -16,8 +17,14 @@ const ClientListItem = ({
   otherContactLastName,
   onDelete,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/evaluation/${encodeURIComponent(id)}`);
+  };
+
   return (
-    <div className="self-stretch overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
+    <div className="self-stretch overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px] cursor-pointer" onClick={handleClick}>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
         <div className="flex-1 relative font-medium">{id}</div>
       </div>
@@ -45,7 +52,7 @@ const ClientListItem = ({
       <div className="flex-1 flex flex-row items-center justify-center py-0 px-5">
         <div className="flex flex-row items-center justify-start gap-[16px]">
           <img className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px] cursor-pointer" alt="Edit" src="/edit-1-2.svg" />
-          <img className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px] cursor-pointer" alt="Delete" src="/trash2-2.svg" onClick={() => onDelete(id)} />
+          <img className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px] cursor-pointer" alt="Delete" src="/trash2-2.svg" onClick={(e) => {e.stopPropagation(); onDelete(id);}} />
         </div>
       </div>
     </div>
