@@ -17,7 +17,7 @@ const TopBar = ({ title = "", backUrl = "" }) => {
           {backUrl && (
             <button 
               onClick={() => navigate(backUrl)} 
-              className="mr-4 p-2 rounded hover:bg-gray-300"
+              className="mr-4 p-2 rounded hover:bg-gray-300 cursor-pointer"
               style={{ backgroundColor: 'transparent' }}
             >
               <svg 
