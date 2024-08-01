@@ -77,7 +77,7 @@ const Table = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="absolute top-[215px] left-[351px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-[1492px] flex flex-col items-start justify-start max-w-full text-xs text-black1 font-montserrat">
+    <div className="absolute top-[235px] left-[351px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-[1492px] flex flex-col items-start justify-start max-w-full text-xs text-black1 font-montserrat">
       <div className="w-[1110px] bg-gray-100 flex flex-row items-center justify-start p-4 box-border max-w-full">
         <div className="flex-1 flex flex-row flex-wrap items-start justify-start gap-[24px] max-w-full">
           <div className="w-36 flex flex-row items-center justify-center gap-[12px]">
