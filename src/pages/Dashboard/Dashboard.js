@@ -100,8 +100,8 @@ const Dashboard = () => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={raceData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="name" axisLine={false} tickLine={false} />
+              <YAxis axisLine={false} tickLine={false} />
               <Tooltip />
               <Bar
                 dataKey="value"
@@ -123,8 +123,8 @@ const Dashboard = () => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={ageData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="name" axisLine={false} tickLine={false} />
+              <YAxis axisLine={false} tickLine={false} />
               <Tooltip />
               <Bar
                 dataKey="value"
@@ -146,8 +146,8 @@ const Dashboard = () => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={childrenData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="name" axisLine={false} tickLine={false} />
+              <YAxis axisLine={false} tickLine={false} />
               <Tooltip />
               <Bar
                 dataKey="value"
