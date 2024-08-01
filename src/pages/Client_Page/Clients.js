@@ -4,6 +4,7 @@ import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import Table from "./Table";
 import Header from "./Header";
+import FloatingButtons from "./FloatingButtons";
 
 const Clients = () => {
   return (
@@ -12,6 +13,7 @@ const Clients = () => {
 
             <TopBar title={"Clients"} backUrl={"/clients"}/>
             <SideMenu />
+            <FloatingButtons/>
             <Header />
       <Table />
     </div>
