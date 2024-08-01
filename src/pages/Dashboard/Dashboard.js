@@ -95,10 +95,10 @@ const Dashboard = () => {
     <div className="w-full min-h-screen overflow-hidden leading-normal tracking-normal text-left text-sm text-gray-700 font-sans bg-purple-100">
       <SideMenu />
       <Earning />
-      <main className="w-[1400px] left-[450px] absolute top-[175px] mx-auto grid grid-cols-2 grid-rows-2 gap-4 p-4 ">
+      <main className="w-[1400px] left-[350px] absolute top-[215px] mx-auto grid grid-cols-2 grid-rows-2 gap-4 p-4 ">
         <div className="p-4 bg-white rounded-[30px] shadow-lg">
           <h3 className="text-lg font-medium mb-4">Race</h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={200}>
             <BarChart data={raceData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" axisLine={false} tickLine={false} />
@@ -121,7 +121,7 @@ const Dashboard = () => {
 
         <div className="p-4 bg-white rounded-[30px] shadow-lg">
           <h3 className="text-lg font-medium mb-4">Age</h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={200}>
             <BarChart data={ageData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" axisLine={false} tickLine={false} />
@@ -144,7 +144,7 @@ const Dashboard = () => {
 
         <div className="p-4 bg-white rounded-[30px] shadow-lg">
           <h3 className="text-lg font-medium mb-4">Number of Children</h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={200}>
             <BarChart data={childrenData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" axisLine={false} tickLine={false} />
@@ -167,7 +167,7 @@ const Dashboard = () => {
 
         <div className="p-4 bg-white rounded-[30px] shadow-lg">
           <h3 className="text-lg font-medium mb-4">Gender</h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
                 data={genderData}
