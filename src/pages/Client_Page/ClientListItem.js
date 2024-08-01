@@ -1,27 +1,46 @@
-// src/components/ClientListItem.jsx
 import React from "react";
 
-const ClientListItem = ({ id, name, contactInfo, clinician, status, statusColor, statusBgColor, onDelete }) => {
+const ClientListItem = ({
+  id,
+  name,
+  date,
+  evaluatedParentFirstName,
+  evaluatedParentLastName,
+  childFirstName,
+  childLastName,
+  childCollateralFirstName,
+  childCollateralLastName,
+  parentCollateralFirstName,
+  parentCollateralLastName,
+  otherContactFirstName,
+  otherContactLastName,
+  onDelete,
+}) => {
   return (
-    <div className={`self-stretch ${statusBgColor} overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]`}>
+    <div className="self-stretch overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
         <div className="flex-1 relative font-medium">{id}</div>
       </div>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
         <div className="flex-1 relative font-medium">{name}</div>
       </div>
-      <div className="flex-1 flex flex-row items-center justify-start py-0 px-5 text-smi text-darkslategray font-inter">
-        <div className="flex-1 relative leading-[19px]">{contactInfo}</div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
+        <div className="flex-1 relative font-medium">{date}</div>
       </div>
-      <div className="flex-1 flex flex-row items-center justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{clinician}</div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
+        <div className="flex-1 relative font-medium">{evaluatedParentFirstName} {evaluatedParentLastName}</div>
       </div>
-      <div className={`flex-1 flex flex-row items-start justify-start py-0 px-5 text-xs ${statusColor}`}>
-        <div className={`rounded-3xl ${statusBgColor} flex flex-row items-center justify-center py-2 px-3`}>
-          <div className="relative font-medium inline-block min-w-[61px]">
-            {status}
-          </div>
-        </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
+        <div className="flex-1 relative font-medium">{childFirstName} {childLastName}</div>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
+        <div className="flex-1 relative font-medium">{childCollateralFirstName} {childCollateralLastName}</div>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
+        <div className="flex-1 relative font-medium">{parentCollateralFirstName} {parentCollateralLastName}</div>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
+        <div className="flex-1 relative font-medium">{otherContactFirstName} {otherContactLastName}</div>
       </div>
       <div className="flex-1 flex flex-row items-center justify-center py-0 px-5">
         <div className="flex flex-row items-center justify-start gap-[16px]">

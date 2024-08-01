@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import axios from "axios";
 import ClientListHeader from "./ClientListHeader";
 import ClientListItem from "./ClientListItem";
 import Pagination from "./Pagination";
@@ -14,17 +15,11 @@ const Table = () => {
 
   useEffect(() => {
     if (clients.length === 0) {
-      fetch("/data.json")
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/people`)
         .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setClients(data);
-          setFilteredClients(data);
-          updateCurrentClients(data, 1);
+          setClients(response.data);
+          setFilteredClients(response.data);
+          updateCurrentClients(response.data, 1);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -105,11 +100,17 @@ const Table = () => {
           key={client.id}
           id={client.id}
           name={client.name}
-          contactInfo={client.contactInfo}
-          clinician={client.clinician}
-          status={client.status}
-          statusColor={client.statusColor}
-          statusBgColor={client.statusBgColor}
+          date={client.date}
+          evaluatedParentFirstName={client.evaluated_parent_first_name}
+          evaluatedParentLastName={client.evaluated_parent_last_name}
+          childFirstName={client.child_first_name}
+          childLastName={client.child_last_name}
+          childCollateralFirstName={client.child_collateral_first_name}
+          childCollateralLastName={client.child_collateral_last_name}
+          parentCollateralFirstName={client.parent_collateral_first_name}
+          parentCollateralLastName={client.parent_collateral_last_name}
+          otherContactFirstName={client.other_contact_first_name}
+          otherContactLastName={client.other_contact_last_name}
           onDelete={() => handleDelete(client.id)}
         />
       ))}
