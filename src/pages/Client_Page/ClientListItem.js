@@ -1,59 +1,32 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
-const ClientListItem = ({
-  id,
-  name,
-  date,
-  evaluatedParentFirstName,
-  evaluatedParentLastName,
-  childFirstName,
-  childLastName,
-  childCollateralFirstName,
-  childCollateralLastName,
-  parentCollateralFirstName,
-  parentCollateralLastName,
-  otherContactFirstName,
-  otherContactLastName,
-  onDelete,
-}) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/evaluation/${encodeURIComponent(id)}`);
-  };
-
+const ClientListItem = ({ id, name, date, evaluatedParentFirstName, evaluatedParentLastName, childFirstName, childLastName, childCollateralFirstName, childCollateralLastName, parentCollateralFirstName, parentCollateralLastName, status, onDelete }) => {
   return (
-    <div className="self-stretch overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px] cursor-pointer" onClick={handleClick}>
+    <div className="self-stretch bg-white overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{id}</span>
+      </div>
+      <div className="flex-1 bg-white flex flex-row items-start justify-start mq450:w-[calc(100%_-_40px)]">
+        <span className="flex-1 relative">{name}</span>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{date}</span>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{evaluatedParentFirstName} {evaluatedParentLastName}</span>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{childFirstName} {childLastName}</span>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{childCollateralFirstName} {childCollateralLastName}</span>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{parentCollateralFirstName} {parentCollateralLastName}</span>
+      </div>
+      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
+        <span className="flex-1 relative">{status}</span> {/* Display status */}
+      </div>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
-        <div className="flex-1 relative font-medium">{id}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{name}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{date}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{evaluatedParentFirstName} {evaluatedParentLastName}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{childFirstName} {childLastName}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{childCollateralFirstName} {childCollateralLastName}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{parentCollateralFirstName} {parentCollateralLastName}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-start justify-start py-0 px-5">
-        <div className="flex-1 relative font-medium">{otherContactFirstName} {otherContactLastName}</div>
-      </div>
-      <div className="flex-1 flex flex-row items-center justify-center py-0 px-5">
-        <div className="flex flex-row items-center justify-start gap-[16px]">
-          <img className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px] cursor-pointer" alt="Edit" src="/edit-1-2.svg" />
-          <img className="h-6 w-6 relative overflow-hidden shrink-0 min-h-[24px] cursor-pointer" alt="Delete" src="/trash2-2.svg" onClick={(e) => {e.stopPropagation(); onDelete(id);}} />
-        </div>
+        <button onClick={onDelete}>Delete</button>
       </div>
     </div>
   );

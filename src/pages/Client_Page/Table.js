@@ -116,7 +116,7 @@ const Table = () => {
           <b className="flex-1 relative">Parent Collateral</b>
         </div>
         <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
-          <b className="flex-1 relative">Other Contact</b>
+          <b className="flex-1 relative">Status</b> {/* Replace Other Contact with Status */}
         </div>
         <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 text-center">
           <b className="flex-1 relative">Actions</b>
@@ -136,8 +136,7 @@ const Table = () => {
           childCollateralLastName={client.child_collateral_last_name}
           parentCollateralFirstName={client.parent_collateral_first_name}
           parentCollateralLastName={client.parent_collateral_last_name}
-          otherContactFirstName={client.other_contact_first_name}
-          otherContactLastName={client.other_contact_last_name}
+          status={client.status}  // Add status prop
           onDelete={() => handleDelete(client.id)}
         />
       ))}
