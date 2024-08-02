@@ -27,6 +27,14 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
       });
   };
 
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(transcription).then(() => {
+      // alert("Transcription copied to clipboard!");
+    }).catch((error) => {
+      console.error("Failed to copy the text to clipboard", error);
+    });
+  };
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`)
@@ -61,11 +69,19 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
           Generate Transcription
         </button>
       ) : (
-        <textarea
-          value={transcription}
-          readOnly
-          className="w-full h-64 p-2 border border-gray-300 rounded"
-        />
+        <div>
+          <textarea
+            value={transcription}
+            readOnly
+            className="w-full h-64 p-2 border border-gray-300 rounded mb-4"
+          />
+          <button 
+            onClick={handleCopyToClipboard} 
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Copy to Clipboard
+          </button>
+        </div>
       )}
     </div>
   );
