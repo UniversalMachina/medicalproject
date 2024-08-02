@@ -6,8 +6,10 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
   const { id, interviewid } = useParams();
   const [transcription, setTranscription] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleGenerateTranscription = () => {
+    setIsGenerating(true);
     const newTranscription = "This is the transcribed text";
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`, {
@@ -16,9 +18,11 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
       .then((response) => {
         setTranscription(newTranscription);
         setIsTranscriptionAvailable(true);
+        setIsGenerating(false);
       })
       .catch((error) => {
         console.error("There was an error generating the transcription!", error);
+        setIsGenerating(false);
       });
   };
 
@@ -41,7 +45,7 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
       });
   }, [id, interviewid, setIsTranscriptionAvailable]);
 
-  if (isLoading) {
+  if (isLoading || isGenerating) {
     return <div>Loading...</div>;
   }
 
