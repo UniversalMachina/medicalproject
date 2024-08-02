@@ -16,6 +16,7 @@ const AddInterview = () => {
   const [interviewerName, setInterviewerName] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [personDetails, setPersonDetails] = useState({});
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -25,10 +26,7 @@ const AddInterview = () => {
           setPersonDetails(response.data);
         })
         .catch((error) => {
-          console.error(
-            "There was an error fetching the person's details!",
-            error
-          );
+          console.error("There was an error fetching the person's details!", error);
         });
     }
   }, [id]);
@@ -38,6 +36,7 @@ const AddInterview = () => {
   };
 
   const handleNextClick = () => {
+    setIsUploading(true);
     const interviewData = new FormData();
     interviewData.append("interview_type", interviewType);
     interviewData.append("interview_date", interviewDate);
@@ -56,10 +55,12 @@ const AddInterview = () => {
       .then((response) => {
         const interviewId = response.data.interview_id;
         console.log(response.data);
+        setIsUploading(false);
         navigate(`/interview/${id}/${interviewId}`);
       })
       .catch((error) => {
         console.error("There was an error uploading the interview!", error);
+        setIsUploading(false);
       });
   };
 
@@ -112,42 +113,25 @@ const AddInterview = () => {
             >
               <option value="">Select Interviewer</option>
               {personDetails.child_first_name && personDetails.child_last_name && (
-                <option
-                  value={`${personDetails.child_first_name} ${personDetails.child_last_name}`}
-                >
-                  Child: {personDetails.child_first_name}{" "}
-                  {personDetails.child_last_name}
+                <option value={`${personDetails.child_first_name} ${personDetails.child_last_name}`}>
+                  Child: {personDetails.child_first_name} {personDetails.child_last_name}
                 </option>
               )}
-              {personDetails.child_collateral_first_name &&
-                personDetails.child_collateral_last_name && (
-                  <option
-                    value={`${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}
-                  >
-                    Child Collateral:{" "}
-                    {personDetails.child_collateral_first_name}{" "}
-                    {personDetails.child_collateral_last_name}
-                  </option>
-                )}
-              {personDetails.parent_collateral_first_name &&
-                personDetails.parent_collateral_last_name && (
-                  <option
-                    value={`${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}
-                  >
-                    Parent Collateral:{" "}
-                    {personDetails.parent_collateral_first_name}{" "}
-                    {personDetails.parent_collateral_last_name}
-                  </option>
-                )}
-              {personDetails.other_contact_first_name &&
-                personDetails.other_contact_last_name && (
-                  <option
-                    value={`${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}
-                  >
-                    Other Contact: {personDetails.other_contact_first_name}{" "}
-                    {personDetails.other_contact_last_name}
-                  </option>
-                )}
+              {personDetails.child_collateral_first_name && personDetails.child_collateral_last_name && (
+                <option value={`${personDetails.child_collateral_first_name} ${personDetails.child_collateral_last_name}`}>
+                  Child Collateral: {personDetails.child_collateral_first_name} {personDetails.child_collateral_last_name}
+                </option>
+              )}
+              {personDetails.parent_collateral_first_name && personDetails.parent_collateral_last_name && (
+                <option value={`${personDetails.parent_collateral_first_name} ${personDetails.parent_collateral_last_name}`}>
+                  Parent Collateral: {personDetails.parent_collateral_first_name} {personDetails.parent_collateral_last_name}
+                </option>
+              )}
+              {personDetails.other_contact_first_name && personDetails.other_contact_last_name && (
+                <option value={`${personDetails.other_contact_first_name} ${personDetails.other_contact_last_name}`}>
+                  Other Contact: {personDetails.other_contact_first_name} {personDetails.other_contact_last_name}
+                </option>
+              )}
             </select>
           </div>
 
@@ -161,21 +145,15 @@ const AddInterview = () => {
                 className="hidden"
                 id="audio-file-input"
               />
-              <label
-                htmlFor="audio-file-input"
-                className="cursor-pointer text-gray-500"
-              >
+              <label htmlFor="audio-file-input" className="cursor-pointer text-gray-500">
                 <div className="flex flex-col items-center justify-center">
                   {audioFile ? (
                     <FaCheckCircle className="text-green-500 text-2xl mb-2" />
                   ) : (
-                    <span className="text-lg font-medium">
-                      Upload Audio File
-                    </span>
+                    <span className="text-lg font-medium">Upload Audio File</span>
                   )}
                   <span className="mt-2 text-sm text-gray-400">
-                    Attach file. File size of your documents should not exceed
-                    10MB.
+                    Attach file. File size of your documents should not exceed 10MB.
                   </span>
                 </div>
               </label>
@@ -198,6 +176,12 @@ const AddInterview = () => {
           >
             Next
           </button>
+
+          {isUploading && (
+            <div className="mt-4 text-blue-500">
+              Uploading audio file to the database. Please wait...
+            </div>
+          )}
         </div>
       </div>
     </div>
