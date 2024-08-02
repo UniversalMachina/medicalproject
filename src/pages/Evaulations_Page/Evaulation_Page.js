@@ -7,13 +7,14 @@ import EvaluationContainer from "./EvaluationContainer";
 import FloatingButtons from "./FloatingButtons";
 import Header from "./Header";
 
-const Evaulations = () => {
+const Evaluations = () => {
   const { theme } = useTheme(); // Get the current theme
 
   // Define the state for the list of people with dates
   const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("mostRecent");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch data from backend
   useEffect(() => {
@@ -22,11 +23,13 @@ const Evaulations = () => {
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
-  // Filter and sort the people based on the filter and sort states
+  // Filter and sort the people based on the filter, sort, and searchTerm states
   const filteredPeople = people
     .filter(person => {
       const date = new Date(person.date);
       const today = new Date();
+      const matchesSearch = person.name.toLowerCase().includes(searchTerm.toLowerCase());
+      if (!matchesSearch) return false;
       if (filter === "day") {
         return date.toDateString() === today.toDateString();
       } else if (filter === "year") {
@@ -49,10 +52,10 @@ const Evaulations = () => {
       <TopBar title={"Evaluations"} backUrl={"/clients"}/>
       <SideMenu />
       <Header />
-      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} />
+      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} setSearchTerm={setSearchTerm} />
       <EvaluationContainer people={filteredPeople} />
     </div>
   );
 };
 
-export default Evaulations;
+export default Evaluations;

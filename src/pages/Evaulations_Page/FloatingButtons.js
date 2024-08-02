@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
-const FloatingButtons = ({ filter, setFilter, setSort }) => {
+const FloatingButtons = ({ filter, setFilter, setSort, setSearchTerm }) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -12,6 +13,17 @@ const FloatingButtons = ({ filter, setFilter, setSort }) => {
   const handleSort = (sortOption) => {
     setSort(sortOption);
     setIsDropdownOpen(false);
+  };
+
+  const debouncedHandleSearch = useCallback(
+    debounce((value) => {
+      setSearchTerm(value);
+    }, 300),
+    []
+  );
+
+  const handleSearch = (event) => {
+    debouncedHandleSearch(event.target.value);
   };
 
   return (
@@ -60,6 +72,16 @@ const FloatingButtons = ({ filter, setFilter, setSort }) => {
       >
         <b className="px-10 text-color-white-100">+ Add Evaluations</b>
       </div>
+      <div className="absolute top-[170px] left-[770px] rounded-lg box-border z-[20] flex flex-row items-center justify-start py-[12px] px-2 gap-[8px] min-w-[591px] max-w-full text-darkgray border-[1px] border-solid border-darkgray">
+  <img className="h-4 w-4 relative overflow-hidden shrink-0 min-h-[16px]" alt="" src="/akariconssearch.svg" />
+  <input
+    type="text"
+    className="flex-1 relative font-medium inline-block max-w-[calc(100%_-_24px)] focus:outline-none"
+    placeholder="Search..."
+    onChange={handleSearch}
+  />
+</div>
+
     </>
   );
 };
