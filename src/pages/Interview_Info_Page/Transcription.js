@@ -10,12 +10,13 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
 
   const handleGenerateTranscription = () => {
     setIsGenerating(true);
-    const newTranscription = "This is the transcribed text";
+    const Transcription = "This is the transcribed text";
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`, {
-        transcription: newTranscription
+        transcription: Transcription
       })
       .then((response) => {
+        const newTranscription = response.data.transcription; // Get the transcription from the response
         setTranscription(newTranscription);
         setIsTranscriptionAvailable(true);
         setIsGenerating(false);
@@ -50,16 +51,20 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
   }
 
   return (
-    <div className="transcription">
-      <h3>Transcription</h3>
+    <div className="transcription p-4">
+      <h3 className="text-xl font-bold mb-4">Transcription</h3>
       {transcription === "Transcription not available" ? (
-        <button onClick={handleGenerateTranscription}>Generate Transcription</button>
+        <button 
+          onClick={handleGenerateTranscription} 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Generate Transcription
+        </button>
       ) : (
         <textarea
           value={transcription}
           readOnly
-          rows="10"
-          cols="50"
+          className="w-full h-64 p-2 border border-gray-300 rounded"
         />
       )}
     </div>
