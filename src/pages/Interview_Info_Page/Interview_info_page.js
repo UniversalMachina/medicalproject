@@ -54,7 +54,7 @@ const Interview_info_page = () => {
       </div>
 
       {isTranscriptionAvailable && (
-        <div className="absolute top-[1380px] left-[332px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pb-[20px] pl-20 box-border max-w-full text-gray">
+        <div className="absolute top-[1420px] left-[332px] rounded-sm-5 bg-color-white-100 w-[1494px] flex flex-row items-start justify-start py-2 pr-[75px] pb-[20px] pl-20 box-border max-w-full text-gray">
           <div className="flex-1 relative leading-[38px] font-semibold inline-block mix-blend-darken max-w-full mq450:text-xl mq450:leading-[30px]">
             <Paperwork isTranscriptionAvailable={isTranscriptionAvailable} />
           </div>

@@ -44,8 +44,7 @@ const Paperwork = ({ isTranscriptionAvailable }) => {
         <textarea
           value={paperwork}
           readOnly
-          rows="10"
-          cols="50"
+          className="w-full h-[800px] p-2 border border-gray-300 rounded mb-4"
         />
       )}
     </div>
