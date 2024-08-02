@@ -1,3 +1,4 @@
+// ContactInfoPopup.js
 import React from 'react';
 
 const ContactInfoPopup = ({ showPopup, currentSection, tempContactInfo, handleInputChange, handleSave, handleCancel }) => {
@@ -9,6 +10,20 @@ const ContactInfoPopup = ({ showPopup, currentSection, tempContactInfo, handleIn
     <div className="fixed inset-0 flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 0, 0, 0.35)' }}>
       <div className="bg-white rounded-lg p-8">
         <h2 className="text-xl font-semibold mb-4">Enter Contact Info for {currentSection}</h2>
+        {currentSection !== 'Child' && (
+          <select
+            name="honorific"
+            className="w-[95%] mb-4 p-2 border border-gray-300 rounded"
+            onChange={handleInputChange}
+            value={tempContactInfo.honorific || ''}
+          >
+            <option value="">Select Honorific</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Dr">Dr</option>
+          </select>
+        )}
         <input
           type="text"
           name="firstName"
