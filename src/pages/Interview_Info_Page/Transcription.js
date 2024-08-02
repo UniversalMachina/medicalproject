@@ -7,22 +7,6 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
   const [transcription, setTranscription] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`)
-      .then((response) => {
-        setTranscription(response.data.transcription);
-        setIsLoading(false);
-        if (response.data.transcription !== "Transcription not available") {
-          setIsTranscriptionAvailable(true);
-        }
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the transcription!", error);
-        setIsLoading(false);
-      });
-  }, [id, interviewid, setIsTranscriptionAvailable]);
-
   const handleGenerateTranscription = () => {
     const newTranscription = "This is the transcribed text";
     axios
@@ -37,6 +21,25 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
         console.error("There was an error generating the transcription!", error);
       });
   };
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`)
+      .then((response) => {
+        const fetchedTranscription = response.data.transcription;
+        setTranscription(fetchedTranscription);
+        setIsLoading(false);
+        if (fetchedTranscription !== "Transcription not available") {
+          setIsTranscriptionAvailable(true);
+        } else {
+          handleGenerateTranscription();
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the transcription!", error);
+        setIsLoading(false);
+      });
+  }, [id, interviewid, setIsTranscriptionAvailable]);
 
   if (isLoading) {
     return <div>Loading...</div>;
