@@ -6,6 +6,7 @@ const Paperwork = ({ isTranscriptionAvailable }) => {
   const { id, interviewid } = useParams();
   const [paperwork, setPaperwork] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false); // New state for generating paperwork
 
   useEffect(() => {
     axios
@@ -21,13 +22,16 @@ const Paperwork = ({ isTranscriptionAvailable }) => {
   }, [id, interviewid]);
 
   const handleGeneratePaperwork = () => {
+    setIsGenerating(true); // Set generating state to true
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/paperwork`)
       .then((response) => {
         setPaperwork(response.data.paperwork);
+        setIsGenerating(false); // Set generating state to false
       })
       .catch((error) => {
         console.error("There was an error generating the paperwork!", error);
+        setIsGenerating(false); // Set generating state to false
       });
   };
 
@@ -38,7 +42,9 @@ const Paperwork = ({ isTranscriptionAvailable }) => {
   return (
     <div className="paperwork">
       <h3>Paperwork</h3>
-      {paperwork === "Paperwork not available" && isTranscriptionAvailable ? (
+      {isGenerating ? (
+        <div>Generating paperwork...</div> // Loading message for paperwork generation
+      ) : paperwork === "Paperwork not available" && isTranscriptionAvailable ? (
         <button onClick={handleGeneratePaperwork}>Generate Paperwork</button>
       ) : (
         <textarea
