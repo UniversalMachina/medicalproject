@@ -10,13 +10,10 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
 
   const handleGenerateTranscription = () => {
     setIsGenerating(true);
-    const Transcription = "This is the transcribed text";
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`, {
-        transcription: Transcription
-      })
+      .post(`${process.env.REACT_APP_BACKEND_URL}/interviews/${id}/${interviewid}/transcription`)
       .then((response) => {
-        const newTranscription = response.data.transcription; // Get the transcription from the response
+        const newTranscription = response.data.transcription;
         setTranscription(newTranscription);
         setIsTranscriptionAvailable(true);
         setIsGenerating(false);

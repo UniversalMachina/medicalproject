@@ -1,5 +1,6 @@
 import React from 'react';
 import InterviewItem from './InterviewItem';
+import Paperwork from './Paperwork';
 
 const InterviewContainer = ({ people = [], id }) => {
   return (
@@ -17,6 +18,13 @@ const InterviewContainer = ({ people = [], id }) => {
       ) : (
         <p>No interviews found</p>
       )}
+
+
+
+            <Paperwork personId={id} />
+    
+   
+
     </div>
   );
 };
