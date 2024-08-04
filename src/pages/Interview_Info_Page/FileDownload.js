@@ -7,7 +7,7 @@ const FileDownload = ({ audioFile, className = "" }) => {
 
   return (
     <div
-      className={`absolute top-[274px] left-[351px] rounded-[20.23px] bg-thistle w-[1339px] overflow-hidden flex flex-row items-start justify-between py-8 pr-[90px] pl-[57px] box-border gap-[20px] max-w-full text-left text-base-9 text-white font-poppins mq675:flex-wrap ${className}`}
+      className={`absolute top-[274px] left-[351px] rounded-[20.23px] bg-thistle w-[1339px] overflow-hidden flex flex-row items-start justify-between py-8 pr-[90px] pl-[57px] box-border gap-[20px] max-w-full text-left text-base-9 text-white font-poppins mq675:flex-wrap ${className} cursor-pointer hover:bg-thistle-600 hover:text-gray-200`}
       onClick={handleDownload} // Add the click handler
     >
       <div className="h-6 w-6 relative overflow-hidden shrink-0 hidden" />
