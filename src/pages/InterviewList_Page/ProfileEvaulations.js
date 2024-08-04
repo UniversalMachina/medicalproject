@@ -51,15 +51,16 @@ const ProfileEvaluations = () => {
     });
 
   return (
-    <div className={`w-full h-[1080px] relative overflow-hidden text-left text-sm font-poppins ${theme === "dark" ? "bg-[#3A3838] text-white" : "bg-white text-gray2"}`}>
+    <div className={`min-h-screen overflow-y-auto overflow-x-hidden relative text-left text-sm font-poppins ${theme === "dark" ? "bg-[#] text-white" : "bg-white text-gray2"}`}>
       <TopBar title={"Interviews"} backUrl={`/`}/>
-      <SideMenu />
-      <Header />
-      <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} id={id}/>
-      {/* Pass the filtered and sorted interviews state to InterviewContainer */}
-      <InterviewContainer people={filteredInterviews} id={id} />
-      {/* <p>No evaluation found for {name} on {date}</p> */}
-
+      <div className="flex">
+        <SideMenu />
+        <div className="flex-grow">
+          <Header />
+          <FloatingButtons filter={filter} setFilter={setFilter} setSort={setSort} id={id}/>
+          <InterviewContainer people={filteredInterviews} id={id} />
+        </div>
+      </div>
     </div>
   );
 };
