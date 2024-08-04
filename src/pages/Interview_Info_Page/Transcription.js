@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Notification from './Notification';
 
 const Transcription = ({ setIsTranscriptionAvailable }) => {
   const { id, interviewid } = useParams();
-  const [transcription, setTranscription] = useState("");
+  const [transcription, setTranscription] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [notification, setNotification] = useState(null);
 
   const handleGenerateTranscription = () => {
     setIsGenerating(true);
@@ -17,9 +19,10 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
         setTranscription(newTranscription);
         setIsTranscriptionAvailable(true);
         setIsGenerating(false);
+        setNotification('Transcription is complete!');
       })
       .catch((error) => {
-        console.error("There was an error generating the transcription!", error);
+        console.error('There was an error generating the transcription!', error);
         setIsGenerating(false);
       });
   };
@@ -28,7 +31,7 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
     navigator.clipboard.writeText(transcription).then(() => {
       // alert("Transcription copied to clipboard!");
     }).catch((error) => {
-      console.error("Failed to copy the text to clipboard", error);
+      console.error('Failed to copy the text to clipboard', error);
     });
   };
 
@@ -39,14 +42,14 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
         const fetchedTranscription = response.data.transcription;
         setTranscription(fetchedTranscription);
         setIsLoading(false);
-        if (fetchedTranscription !== "Transcription not available") {
+        if (fetchedTranscription !== 'Transcription not available') {
           setIsTranscriptionAvailable(true);
         } else {
           handleGenerateTranscription();
         }
       })
       .catch((error) => {
-        console.error("There was an error fetching the transcription!", error);
+        console.error('There was an error fetching the transcription!', error);
         setIsLoading(false);
       });
   }, [id, interviewid, setIsTranscriptionAvailable]);
@@ -58,7 +61,7 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
   return (
     <div className="transcription p-4">
       <h3 className="text-xl font-bold mb-4">Transcription</h3>
-      {transcription === "Transcription not available" ? (
+      {transcription === 'Transcription not available' ? (
         <button 
           onClick={handleGenerateTranscription} 
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -79,6 +82,9 @@ const Transcription = ({ setIsTranscriptionAvailable }) => {
             Copy to Clipboard
           </button>
         </div>
+      )}
+      {notification && (
+        <Notification message={notification} onClose={() => setNotification(null)} />
       )}
     </div>
   );

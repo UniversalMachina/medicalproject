@@ -13,3 +13,25 @@ body {
 ::after {
   border-width: 0;
 }
+
+
+/* Add this to your CSS file */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.notification {
+  animation: fadeInOut 3s forwards;
+}
