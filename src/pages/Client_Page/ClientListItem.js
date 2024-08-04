@@ -56,6 +56,8 @@ const ClientListItem = ({
 
   const backgroundColor = theme === "dark" ? "bg-gray-800" : "bg-white";
   const textColor = theme === "dark" ? "text-white" : "text-black";
+  const selectBgColor = theme === "dark" ? "bg-[#3A3838]" : "bg-white";
+  const selectTextColor = theme === "dark" ? "text-white" : "text-black";
   const tooltipBackgroundColor = theme === "dark" ? "bg-gray-700" : "bg-gray-300";
   const tooltipTextColor = theme === "dark" ? "text-white" : "text-black";
 
@@ -91,11 +93,13 @@ const ClientListItem = ({
         <select
           value={status}
           onChange={(e) => onStatusChange(id, e.target.value)}
-          className={textColor}
+          className={`p-2 rounded ${selectBgColor} ${selectTextColor}`}
         >
           <option value="waitlist">Waitlist</option>
           <option value="evaluated">Evaluated</option>
         </select>
+
+
         {showTooltip && (
           <div
             style={{

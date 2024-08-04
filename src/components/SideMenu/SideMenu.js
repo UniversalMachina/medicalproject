@@ -25,9 +25,7 @@ const SideMenu = ({ activePage = "" }) => {
     if (name === activePage ||
         (activePage === "" && currentPath === "/" && name === "Evaluations") ||
         (activePage === "" && currentPath === menuItems.find(item => item.name === name)?.path)) {
-      return `bg-color-primary-100 text-color-white-100 ${
-        isCollapsed ? "w-[25px]" : "w-[85%]"
-      }`;
+      return `bg-color-primary-100 text-color-white-100 ${isCollapsed ? "w-[25px]" : "w-[85%]"}`;
     }
     return "";
   };
@@ -47,14 +45,12 @@ const SideMenu = ({ activePage = "" }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 ${
-        isCollapsed ? "w-[120px]" : "w-[289px]"
-      } h-screen overflow-hidden text-xs font-plus-jakarta-sans flex flex-col justify-between transition-all duration-300`}
+      className={`fixed top-0 left-0 ${isCollapsed ? "w-[120px]" : "w-[289px]"} h-screen overflow-hidden text-xs font-plus-jakarta-sans flex flex-col justify-between transition-all duration-300`}
       style={{ backgroundColor, color: textColor }}
     >
       <div>
         <div className="flex justify-between items-center pl-[30px] pt-[30px]">
-          <div className="text-sm leading-[21px] font-semibold">MENU</div>
+         <div className={`text-sm leading-[21px] font-semibold ${textColor}`}>MENU</div>
           <button
             onClick={toggleSidebar}
             className="pr-[10px] bg-transparent border-none focus:outline-none"
@@ -67,17 +63,17 @@ const SideMenu = ({ activePage = "" }) => {
         </div>
         <div className="p-[30px]">
           {menuItems.map((item) => (
-            <Link
+     <Link
               to={item.path}
               key={item.name}
-              className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${getHighlightClass(item.name)} visited:text-current`}
+              className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${getHighlightClass(item.name)} ${theme === "dark" ? "text-white" : "text-black"} visited:text-current`}
             >
               <item.icon
                 className={`h-6 w-6 ${getIconColor(item.name)}`}
               />
-              {!isCollapsed && (
+        {!isCollapsed && (
                 <div
-                  className={`font-semibold ${getHighlightClass(item.name) ? "text-color-white-100" : ""}`}
+                  className={`font-semibold ${getHighlightClass(item.name) ? "text-color-white-100" : textColor}`}
                 >
                   {item.name}
                 </div>
@@ -93,21 +89,19 @@ const SideMenu = ({ activePage = "" }) => {
       </div>
       {!isCollapsed && (
         <div className="p-[30px]">
-          <div className="text-sm leading-[21px] font-semibold">SETTINGS</div>
+          <div className={`text-sm leading-[21px] font-semibold ${textColor}`}>SETTINGS</div>
           <Link
             to="/logout"
             className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${primaryColorClass} visited:text-current`}
           >
             <FontAwesomeIcon icon={faChevronRight} className="h-6 w-6 text-white" />
             <div
-              className={`font-semibold ${
-                currentPath === "/logout" ? "text-color-white-100" : "text-color-white-100"
-              }`}
+              className={`font-semibold ${currentPath === "/logout" ? "text-color-white-100" : "text-color-white-100"}`}
             >
               Log out
             </div>
           </Link>
-          <img className={`w-full mt-2`} alt="Divider" src="/divider.svg" />
+          <img className="w-full mt-2" alt="Divider" src="/divider.svg" />
         </div>
       )}
     </div>
