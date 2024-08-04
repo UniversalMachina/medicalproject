@@ -40,7 +40,7 @@ const FileDownload = ({ audioFile, className = "" }) => {
 
   return (
     <div
-      className={`absolute top-[274px] left-[351px] rounded-[20.23px] bg-thistle w-[1339px] overflow-hidden flex flex-col items-center justify-between py-8 pr-[90px] pl-[57px] box-border gap-[20px] max-w-full text-left text-base-9 text-white font-poppins mq675:flex-wrap ${className} cursor-pointer hover:bg-thistle-600 hover:text-gray-200`}
+      className={`absolute top-[254px] left-[351px] rounded-[20.23px] bg-thistle w-[1339px] overflow-hidden flex flex-col items-center justify-between py-8 pr-[90px] pl-[57px] box-border gap-[20px] max-w-full text-left text-base-9 text-white font-poppins mq675:flex-wrap ${className} cursor-pointer hover:bg-thistle-600 hover:text-gray-200`}
     >
       <div
         className="flex flex-row items-center justify-between w-full"
