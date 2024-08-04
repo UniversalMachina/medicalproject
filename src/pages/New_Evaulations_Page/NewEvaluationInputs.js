@@ -3,9 +3,11 @@ import { FaTrash } from 'react-icons/fa';
 import ContactInfoPopup from './ContactInfoPopup';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useTheme } from '../../themeContext'; // Import the custom hook
 
 const NewEvaluationInputs = () => {
   const navigate = useNavigate();
+  const { theme } = useTheme(); // Get the current theme
 
   const evaluationSections = [
     "Evaluated Parent",
@@ -104,16 +106,22 @@ const NewEvaluationInputs = () => {
     }
   };
 
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+  const borderColor = theme === "dark" ? "border-white" : "border-black";
+  const sectionFilledBgColor = theme === "dark" ? "bg-red-700" : "bg-red-500";
+  const sectionTextColor = theme === "dark" ? "text-white" : "text-black";
+  const deleteButtonBgColor = theme === "dark" ? "bg-gray-900" : "bg-white";
+
   return (
     <div className="absolute top-[304px] left-[351px] w-[1278px] h-auto flex flex-col items-start justify-start gap-[38px]">
       {/* Evaluation Name section */}
-      <div className="w-[1258px] h-auto bg-white flex flex-col text-black font-poppins">
+      <div className={`w-[1258px] h-auto flex flex-col font-poppins ${textColor}`}>
         <div className="h-[25.3px] w-full relative font-semibold text-[30px]">
           Evaluation Name*
         </div>
         <input
           type="text"
-          className="w-full h-[48.7px] mt-[40px] rounded-[10.12px] border border-black pl-[30px]"
+          className={`w-full h-[48.7px] mt-[40px] rounded-[10.12px] border ${borderColor} pl-[30px] ${textColor} ${theme === "dark" ? "bg-gray-800" : "bg-white"}`}
           placeholder="Enter Evaluation Name"
           value={evaluationName}
           onChange={(e) => setEvaluationName(e.target.value)}
@@ -124,7 +132,7 @@ const NewEvaluationInputs = () => {
       {evaluationSections.map((section, index) => (
         <div
           key={index}
-          className={`w-[1278px] h-auto rounded-[20.23px] ${contactInfo[section] ? "bg-red-500" : "bg-thistle"} overflow-hidden shrink-0 flex flex-row items-center justify-between pt-[21.9px] pb-[17.3px] pr-[28.3px] pl-8 box-border text-left text-white font-poppins cursor-pointer`}
+          className={`w-[1278px] h-auto rounded-[20.23px] ${contactInfo[section] ? sectionFilledBgColor : "bg-thistle"} overflow-hidden shrink-0 flex flex-row items-center justify-between pt-[21.9px] pb-[17.3px] pr-[28.3px] pl-8 box-border text-left font-poppins cursor-pointer ${sectionTextColor}`}
           onClick={() => handleSectionClick(section)}
         >
           <div className="h-[25.3px] w-auto relative font-semibold inline-block shrink-0">
@@ -136,7 +144,7 @@ const NewEvaluationInputs = () => {
                 {contactInfo[section].honorific} {contactInfo[section].firstName} {contactInfo[section].lastName}
               </span>
               <button
-                className="bg-white p-2 rounded-full"
+                className={`${deleteButtonBgColor} p-2 rounded-full`}
                 onClick={(e) => handleDelete(section, e)}
               >
                 <FaTrash className="text-red-500" />

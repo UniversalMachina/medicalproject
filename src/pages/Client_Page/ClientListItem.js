@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import { useTheme } from "../../themeContext"; // Import the custom hook
 
 const ClientListItem = ({
   id,
@@ -18,6 +19,7 @@ const ClientListItem = ({
   onDelete,
   onStatusChange
 }) => {
+  const { theme } = useTheme(); // Get the current theme
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const [waitlistDuration, setWaitlistDuration] = useState('');
@@ -52,12 +54,17 @@ const ClientListItem = ({
     setShowTooltip(false);
   };
 
+  const backgroundColor = theme === "dark" ? "bg-gray-800" : "bg-white";
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+  const tooltipBackgroundColor = theme === "dark" ? "bg-gray-700" : "bg-gray-300";
+  const tooltipTextColor = theme === "dark" ? "text-white" : "text-black";
+
   return (
-    <div className="self-stretch bg-white overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
+    <div className={`self-stretch overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px] ${backgroundColor} ${textColor}`}>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
         <span className="flex-1 relative">{id}</span>
       </div>
-      <div className="flex-1 bg-white flex flex-row items-start justify-start mq450:w-[calc(100%_-_40px)]">
+      <div className="flex-1 flex flex-row items-start justify-start mq450:w-[calc(100%_-_40px)]">
         <span className="flex-1 relative">{name}</span>
       </div>
       <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
@@ -84,6 +91,7 @@ const ClientListItem = ({
         <select
           value={status}
           onChange={(e) => onStatusChange(id, e.target.value)}
+          className={textColor}
         >
           <option value="waitlist">Waitlist</option>
           <option value="evaluated">Evaluated</option>
@@ -95,8 +103,8 @@ const ClientListItem = ({
               top: tooltipPosition.top,
               left: tooltipPosition.left,
               padding: '8px',
-              backgroundColor: 'gray',
-              color: 'white',
+              backgroundColor: tooltipBackgroundColor,
+              color: tooltipTextColor,
               borderRadius: '4px',
               zIndex: 1000
             }}

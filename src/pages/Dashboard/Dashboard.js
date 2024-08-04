@@ -14,6 +14,10 @@ import {
 } from "recharts";
 import Earning from "./Earning";
 import SideMenu from "../../components/SideMenu/SideMenu";
+import { useTheme } from "../../themeContext"; // Import the custom hook
+
+
+
 
 const raceData = [
   { name: "White", value: 15 },
@@ -91,9 +95,11 @@ const CustomBackground = (props) => {
 };
 
 const Dashboard = () => {
+  const { theme } = useTheme(); // Get the current theme
+
   return (
-    <div className="w-full min-h-screen overflow-hidden leading-normal tracking-normal text-left text-sm text-gray-700 font-sans bg-purple-100">
-      <SideMenu />
+<div className={`w-full min-h-screen overflow-hidden leading-normal tracking-normal text-left text-sm text-gray-700 font-sans ${theme === "dark" ? 'bg-[#3A3838]' : 'bg-purple-100'}`}>
+<SideMenu />
       <Earning />
       <main className="w-[1400px] left-[350px] absolute top-[215px] mx-auto grid grid-cols-2 grid-rows-2 gap-4 p-4 ">
         <div className="p-4 bg-white rounded-[30px] shadow-lg">

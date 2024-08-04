@@ -71,7 +71,7 @@ const AddInterview = () => {
   return (
     <div
       className={`w-full min-h-screen relative overflow-hidden text-left text-sm font-poppins ${
-        theme === "dark" ? "bg-black text-white" : "bg-white text-gray-800"
+        theme === "dark" ? "bg-[#3A3838] text-white" : "bg-white text-gray-800"
       }`}
     >
       <TopBar title={"Add Interview"} backUrl={`/evaluation/${id}`} />

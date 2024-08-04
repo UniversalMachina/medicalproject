@@ -3,8 +3,10 @@ import axios from "axios";
 import ClientListItem from "./ClientListItem";
 import Pagination from "./Pagination";
 import debounce from "lodash.debounce";
+import { useTheme } from "../../themeContext"; // Import the custom hook
 
 const Table = () => {
+  const { theme } = useTheme(); // Get the current theme
   const [clients, setClients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,34 +86,42 @@ const Table = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const backgroundColor = theme === "dark" ? "bg-gray-800" : "bg-white";
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+  const inputBackgroundColor = theme === "dark" ? "bg-gray-700" : "bg-gray-100";
+  const inputBorderColor = theme === "dark" ? "border-gray-600" : "border-gray-300";
+
   return (
-    <div className="absolute top-[285px] rounded-[20px] left-[351px] shadow-lg w-[1492px] flex flex-col items-start justify-start max-w-full text-xs text-black1 font-montserrat">
-      <div className="w-[1110px] bg-gray-100 flex flex-row items-center justify-start p-4 box-border max-w-full">
+    <div className={`absolute top-[285px] rounded-[20px] left-[351px] shadow-lg w-[1492px] flex flex-col items-start justify-start max-w-full text-xs font-montserrat ${textColor}`}>
+      <div className={`w-[1110px] flex flex-row items-center justify-start p-4 box-border max-w-full ${inputBackgroundColor}`}>
         <div className="flex-1 flex flex-row flex-wrap items-start justify-start gap-[24px] max-w-full">
           <div className="w-36 flex flex-row items-center justify-center gap-[12px]">
             <div className="relative font-medium inline-block min-w-[34px]">Show</div>
-            <div className="flex-[0.5814] rounded-lg bg-gray-200 flex flex-row items-center justify-start py-2 px-[9px] gap-[4px] mq450:w-[calc(100%_-_40px)]">
+            <div className={`flex-[0.5814] rounded-lg flex flex-row items-center justify-start py-2 px-[9px] gap-[4px] mq450:w-[calc(100%_-_40px)] ${inputBackgroundColor}`}>
               <div className="relative font-medium inline-block min-w-[13px]">{itemsPerPage}</div>
               <img className="h-2 w-2 relative overflow-hidden shrink-0" alt="" src="/bicaretdownfill.svg" />
             </div>
             <div className="flex-1 relative font-medium inline-block min-w-[43px]">entries</div>
           </div>
-          <div className="flex-1 rounded-lg box-border flex flex-row items-center justify-start py-1.5 px-2 gap-[8px] min-w-[591px] max-w-full text-darkgray border-[1px] border-solid border-darkgray mq825:min-w-full">
+          <div className={`flex-1 rounded-lg box-border flex flex-row items-center justify-start py-1.5 px-2 gap-[8px] min-w-[591px] max-w-full text-darkgray border-[1px] border-solid ${inputBorderColor} mq825:min-w-full`}>
             <img className="h-4 w-4 relative overflow-hidden shrink-0 min-h-[16px]" alt="" src="/akariconssearch.svg" />
             <input
               type="text"
-              className="flex-1 relative font-medium inline-block max-w-[calc(100%_-_24px)]"
+              className={`flex-1 relative font-medium inline-block max-w-[calc(100%_-_24px)] ${textColor} ${inputBackgroundColor}`}
               placeholder="Search..."
               onChange={handleSearch}
+              style={{
+                backgroundColor: 'transparent',}}
+              
             />
           </div>
         </div>
       </div>
-      <div className="self-stretch bg-white overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px]">
+      <div className={`self-stretch overflow-x-auto flex flex-row items-center justify-center p-4 gap-[16px] ${backgroundColor}`}>
         <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">
           <b className="flex-1 relative">ID</b>
         </div>
-        <div className="flex-1 bg-white flex flex-row items-start justify-start mq450:w-[calc(100%_-_40px)]">
+        <div className="flex-1 flex flex-row items-start justify-start mq450:w-[calc(100%_-_40px)]">
           <b className="flex-1 relative">Name</b>
         </div>
         <div className="flex-1 flex flex-row items-start justify-start py-0 px-5 gap-[8px]">

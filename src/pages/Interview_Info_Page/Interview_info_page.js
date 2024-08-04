@@ -38,8 +38,8 @@ const Interview_info_page = () => {
 
   return (
     <div
-      className={`w-full h-[1080px] text-left text-sm font-poppins ${
-        theme === "dark" ? "bg-black text-white" : "bg-white text-gray2"
+      className={`w-full h-[2000px] relative  text-left text-sm font-poppins ${
+        theme === "dark" ? "bg-[#3A3838] text-white" : "bg-white text-gray-800"
       }`}
     >
       <TopBar title={"Interview Info"} backUrl={`/evaluation/${id}`} />

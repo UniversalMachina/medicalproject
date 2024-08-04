@@ -1,18 +1,20 @@
 import React from "react";
 import FileDownload from "./FileDownload"; // Import the FileDownload component
+import { useTheme } from "../../themeContext"; // Import the custom hook
 
 const InterviewDetails = ({ interviewDetails }) => {
+  const { theme } = useTheme(); // Get the current theme
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+
   return (
     <div>
-      <div className="absolute top-[169px] left-[276px] w-[1175px] flex flex-row items-start justify-start py-0 px-[75px] box-border max-w-full z-[2] text-13xl text-black font-poppins">
+<div className={`absolute top-[169px] left-[276px] w-[1175px] flex flex-row items-start justify-start py-0 px-[75px] box-border max-w-full z-[2] text-13xl font-poppins ${textColor}`}>
         <div className="h-[22px] relative font-semibold inline-block mq450:text-lgi mq850:text-7xl">
           {interviewDetails.interviewer_name}
         </div>
       </div>
 
-      <div className="absolute top-[1212px] left-[351px] rounded-[20.23px] bg-white w-[1375px] h-[790px] overflow-hidden">
-        <div className="absolute top-[0px] left-[0px] w-6 h-6 overflow-hidden hidden" />
-      </div>
+
 
       <div className="absolute top-[453px] left-[338px] text-3xl-1 leading-[34px] inline-block w-[545.8px] mq450:text-lg mq450:leading-[27px]">
         Who was the interview with?

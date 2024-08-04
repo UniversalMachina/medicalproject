@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FaRegFileAlt, FaTachometerAlt, FaUsers } from 'react-icons/fa';
+import { useTheme } from "../../themeContext"; // Import the custom hook
 
 const SideMenu = ({ activePage = "" }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { theme } = useTheme(); // Get the current theme
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -39,14 +38,19 @@ const SideMenu = ({ activePage = "" }) => {
         (activePage === "" && currentPath === menuItems.find(item => item.name === name)?.path)) {
       return "text-white";
     }
-    return "text-black";
+    return theme === "dark" ? "text-white" : "text-black";
   };
+
+  const backgroundColor = theme === "dark" ? "#2C2C2C" : "white";
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+  const primaryColorClass = "bg-color-primary-100 text-color-white-100";
 
   return (
     <div
       className={`fixed top-0 left-0 ${
         isCollapsed ? "w-[120px]" : "w-[289px]"
-      } h-screen bg-color-white-100 overflow-hidden text-xs text-color-black-100 font-plus-jakarta-sans flex flex-col justify-between transition-all duration-300`}
+      } h-screen overflow-hidden text-xs font-plus-jakarta-sans flex flex-col justify-between transition-all duration-300`}
+      style={{ backgroundColor, color: textColor }}
     >
       <div>
         <div className="flex justify-between items-center pl-[30px] pt-[30px]">
@@ -57,7 +61,7 @@ const SideMenu = ({ activePage = "" }) => {
           >
             <FontAwesomeIcon
               icon={isCollapsed ? faChevronRight : faChevronLeft}
-              className="text-color-primary-100"
+              className={theme === "dark" ? "text-white" : "text-color-primary-100"}
             />
           </button>
         </div>
@@ -66,7 +70,7 @@ const SideMenu = ({ activePage = "" }) => {
             <Link
               to={item.path}
               key={item.name}
-              className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${getHighlightClass(item.name)}`}
+              className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${getHighlightClass(item.name)} visited:text-current`}
             >
               <item.icon
                 className={`h-6 w-6 ${getIconColor(item.name)}`}
@@ -92,12 +96,12 @@ const SideMenu = ({ activePage = "" }) => {
           <div className="text-sm leading-[21px] font-semibold">SETTINGS</div>
           <Link
             to="/logout"
-            className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 bg-color-primary-100 text-color-white-100`}
+            className={`no-underline flex items-center gap-4 p-3 rounded-xl mt-2 ${primaryColorClass} visited:text-current`}
           >
             <FontAwesomeIcon icon={faChevronRight} className="h-6 w-6 text-white" />
             <div
               className={`font-semibold ${
-                currentPath === "/logout" ? "text-color-white-100" : ""
+                currentPath === "/logout" ? "text-color-white-100" : "text-color-white-100"
               }`}
             >
               Log out
