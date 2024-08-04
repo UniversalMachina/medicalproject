@@ -109,7 +109,7 @@ const NewEvaluationInputs = () => {
   const textColor = theme === "dark" ? "text-white" : "text-black";
   const borderColor = theme === "dark" ? "border-white" : "border-black";
   const sectionFilledBgColor = theme === "dark" ? "bg-red-700" : "bg-red-500";
-  const sectionTextColor = theme === "dark" ? "text-white" : "text-black";
+  const sectionTextColor = theme === "dark" ? "text-white" : "text-white";
   const deleteButtonBgColor = theme === "dark" ? "bg-gray-900" : "bg-white";
 
   return (
