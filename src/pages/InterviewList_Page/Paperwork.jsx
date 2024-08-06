@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
 
 const Paperwork = ({ personId }) => {
   const [hasTranscriptions, setHasTranscriptions] = useState(false);
@@ -57,11 +58,9 @@ const Paperwork = ({ personId }) => {
       <h3 className="text-xl font-bold mb-4">Report</h3>
       {paperwork ? (
         <div>
-          <textarea
-            value={paperwork}
-            readOnly
-            className="w-full h-64 p-2 border border-gray-300 rounded mb-4"
-          />
+          <div className="markdown-body w-full h-64 p-2 border border-gray-300 rounded mb-4 overflow-auto">
+            <ReactMarkdown>{paperwork}</ReactMarkdown>
+          </div>
           <button
             onClick={handleGenerateReport}
             disabled={!hasTranscriptions || isGenerating}
