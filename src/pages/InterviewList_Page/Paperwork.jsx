@@ -7,6 +7,7 @@ const Paperwork = ({ personId }) => {
   const [paperwork, setPaperwork] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     // Fetch interviews to check if transcriptions are available
@@ -14,7 +15,10 @@ const Paperwork = ({ personId }) => {
       .get(`${process.env.REACT_APP_BACKEND_URL}/people/${personId}/interviews`)
       .then((response) => {
         const interviews = response.data.interviews;
-        const transcriptionsExist = interviews.some(interview => interview.transcription && interview.transcription.trim() !== "");
+        const transcriptionsExist = interviews.some(
+          (interview) =>
+            interview.transcription && interview.transcription.trim() !== ""
+        );
         setHasTranscriptions(transcriptionsExist);
       })
       .catch((error) => {
@@ -32,7 +36,7 @@ const Paperwork = ({ personId }) => {
         console.error("There was an error fetching the paperwork!", error);
         setIsLoading(false);
       });
-  }, [personId]);
+  }, [personId, refreshKey]);
 
   const handleGenerateReport = () => {
     if (!hasTranscriptions) return;
@@ -42,6 +46,7 @@ const Paperwork = ({ personId }) => {
       .then((response) => {
         setPaperwork(response.data.paperwork);
         setIsGenerating(false);
+        setRefreshKey((prevKey) => prevKey + 1); // Trigger a re-fetch by updating refreshKey
       })
       .catch((error) => {
         console.error("There was an error generating the report!", error);
@@ -64,7 +69,11 @@ const Paperwork = ({ personId }) => {
           <button
             onClick={handleGenerateReport}
             disabled={!hasTranscriptions || isGenerating}
-            className={`font-bold py-2 px-4 rounded ${hasTranscriptions && !isGenerating ? 'bg-blue-500 hover:bg-blue-700 text-white' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
+            className={`font-bold py-2 px-4 rounded ${
+              hasTranscriptions && !isGenerating
+                ? "bg-blue-500 hover:bg-blue-700 text-white"
+                : "bg-gray-300 text-gray-700 cursor-not-allowed"
+            }`}
           >
             {isGenerating ? "Generating Report..." : "Generate New Report"}
           </button>
@@ -73,7 +82,11 @@ const Paperwork = ({ personId }) => {
         <button
           onClick={handleGenerateReport}
           disabled={!hasTranscriptions || isGenerating}
-          className={`font-bold py-2 px-4 rounded ${hasTranscriptions && !isGenerating ? 'bg-blue-500 hover:bg-blue-700 text-white' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
+          className={`font-bold py-2 px-4 rounded ${
+            hasTranscriptions && !isGenerating
+              ? "bg-blue-500 hover:bg-blue-700 text-white"
+              : "bg-gray-300 text-gray-700 cursor-not-allowed"
+          }`}
         >
           {isGenerating ? "Generating Report..." : "Generate Report"}
         </button>
