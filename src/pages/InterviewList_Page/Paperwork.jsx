@@ -9,6 +9,8 @@ const Paperwork = ({ personId }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
+  const logoMarkdown = "![Logo](/logo.png)\n\n";
+
   useEffect(() => {
     // Fetch interviews to check if transcriptions are available
     axios
@@ -44,7 +46,7 @@ const Paperwork = ({ personId }) => {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/people/${personId}/generate_report`)
       .then((response) => {
-        setPaperwork(response.data.paperwork);
+        setPaperwork(logoMarkdown + response.data.paperwork);
         setIsGenerating(false);
         setRefreshKey((prevKey) => prevKey + 1); // Trigger a re-fetch by updating refreshKey
       })
@@ -52,6 +54,17 @@ const Paperwork = ({ personId }) => {
         console.error("There was an error generating the report!", error);
         setIsGenerating(false);
       });
+  };
+
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(logoMarkdown + paperwork).then(
+      () => {
+        // alert("Report copied to clipboard!");
+      },
+      (err) => {
+        console.error("Could not copy text: ", err);
+      }
+    );
   };
 
   if (isLoading) {
@@ -64,19 +77,27 @@ const Paperwork = ({ personId }) => {
       {paperwork ? (
         <div>
           <div className="markdown-body w-full h-64 p-2 border border-gray-300 rounded mb-4 overflow-auto">
-            <ReactMarkdown>{paperwork}</ReactMarkdown>
+            <ReactMarkdown>{logoMarkdown + paperwork}</ReactMarkdown>
           </div>
-          <button
-            onClick={handleGenerateReport}
-            disabled={!hasTranscriptions || isGenerating}
-            className={`font-bold py-2 px-4 rounded ${
-              hasTranscriptions && !isGenerating
-                ? "bg-blue-500 hover:bg-blue-700 text-white"
-                : "bg-gray-300 text-gray-700 cursor-not-allowed"
-            }`}
-          >
-            {isGenerating ? "Generating Report..." : "Generate New Report"}
-          </button>
+          <div className="flex space-x-4">
+            <button
+              onClick={handleGenerateReport}
+              disabled={!hasTranscriptions || isGenerating}
+              className={`font-bold py-2 px-4 rounded ${
+                hasTranscriptions && !isGenerating
+                  ? "bg-blue-500 hover:bg-blue-700 text-white"
+                  : "bg-gray-300 text-gray-700 cursor-not-allowed"
+              }`}
+            >
+              {isGenerating ? "Generating Report..." : "Generate New Report"}
+            </button>
+            <button
+              onClick={handleCopyToClipboard}
+              className="font-bold py-2 px-4 rounded bg-green-500 hover:bg-green-700 text-white"
+            >
+              Copy Report
+            </button>
+          </div>
         </div>
       ) : (
         <button
